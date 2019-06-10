@@ -1,6 +1,8 @@
 const { docToArchieML } = require('@newswire/doc-to-archieml');
 const { google } = require('googleapis');
 const fs = require('fs');
+const mapKeysDeep = require('map-keys-deep');
+const camelCase = require('lodash.camelcase');
 
 async function main() {
   // this method looks for the GCLOUD_PROJECT and GOOGLE_APPLICATION_CREDENTIALS
@@ -15,7 +17,9 @@ async function main() {
     auth
   });
 
-  const json = JSON.stringify(results);
+  const mappedResults = mapKeysDeep(results, camelCase);
+
+  const json = JSON.stringify(mappedResults);
 
   // `results` is your JavaScript object representing the processed data in the spreadsheet
   // write `results` to a local file
