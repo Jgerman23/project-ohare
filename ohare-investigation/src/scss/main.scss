@@ -1,2 +1,12 @@
 @import '~bga-style/scss/webpack';
 @import './art';
+
+nav.global {
+  background: transparent;
+  border-bottom: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 9;
+}
