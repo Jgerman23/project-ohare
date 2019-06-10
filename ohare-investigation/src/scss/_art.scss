@@ -1,0 +1,44 @@
+/* ART */
+.jumbo.diptych {
+  overflow: hidden;
+  transition: unset !important;
+
+  * {
+    transition: unset !important;
+  }
+
+  @include media('>=desktop') {
+    margin-left: -1rem;
+    margin-right: -1rem;
+    width: calc(100% + 2rem);
+  }
+}
+
+// http://cookbook.latimes.com/art/photo-variants/
+@include media('>=phone') {
+  .diptych figure {
+    float: left;
+    width: 49.5%;
+    margin: 0px 1% 1rem 0;
+  }
+
+  .diptych figure:last-of-type {
+    margin-right: 0;
+  }
+}
+
+.projects-timeline {
+  h5 {
+    margin-top: 0.5rem;
+  }
+
+  .text-container {
+    overflow: hidden;
+    padding: 1rem;
+  }
+
+  .card {
+    float: left;
+    margin-top: 1rem;
+  }
+}

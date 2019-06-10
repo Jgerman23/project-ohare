@@ -1,0 +1,31 @@
+{% macro build_details(details) %}
+    {% for key, val in details %}
+      {% if key != "Description" %}
+      <p><strong>{{ key }}</strong>: {{ val | markdown(strip=true, html=true) | safe }}</p>
+      {% endif %}
+    {% endfor %}
+    {{ details.Description | markdown(html=true) | safe }}
+{% endmacro %}
+
+<div class="art graphic full-width projects-timeline">
+  {% for project in PROJECT_SECTION %}
+  
+  <div class="text-container">
+    <h4><strong>{{loop.index}}. {{ project.Description | markdown(strip=true, html=true) | safe }}</strong></h4>
+
+    <div class="card">
+      <h5>Promised</h5>
+      {% set details = project.estimated | first %}
+      {{ build_details(details) }}
+    </div>
+
+    <div class="card">
+      <h5>Actual</h5>
+      {% set details = project.actual | first %}
+      {{ build_details(details) }}
+    </div>
+
+  </div>
+
+  {% endfor %}
+</div>
