@@ -1,0 +1,44 @@
+{% from "_macros.njk" import jpg %}
+
+<section class="intro">
+
+  <header class="header--top header--center header--drop-mobile">
+
+    <!-- <figure class="lede-image">
+      {# {{ jpg(ARCHIE.top.hero.source) }} #}
+      <img src="https://via.placeholder.com/800x450" />
+      
+      <figcaption class="caption">
+        {# <span class="cutline">{{ ARCHIE.top.hero.cutline }}</span> #}
+        <span class="cutline">Sample photographer | DNE</span>
+      </figcaption>
+    </figure> -->
+    
+    <div class="lede-copy">
+      <h1 class="hed">
+        {{ARCHIE.top.headline}}
+      </h1>
+      <summary class="dek">
+        {{ARCHIE.top.deck}}
+      </summary>
+      <div class="bylines">
+        {{ ARCHIE.top.byline | safe }}
+      </div>
+    </div>
+  
+  </header>
+
+  <hr>
+  
+  <div class="info">
+    <p>
+      <span class="timestamp">
+        <time datetime="{{ARCHIE.top.timestamp}}">{{ARCHIE.top.date}}</time>
+      </span>
+    </p>
+
+    <p>
+      {{ARCHIE.top.partner_language | safe}}
+    </p>
+  </div>
+</section>
