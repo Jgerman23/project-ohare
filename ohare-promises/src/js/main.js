@@ -4,7 +4,7 @@ import App from './App.svelte';
 
 const app = new App({
   target: document.querySelector('article.main'),
-  anchor: document.querySelector('section.story'),
+  // anchor: document.querySelector('section.story'),
   props: {
     name: 'world'
   }
