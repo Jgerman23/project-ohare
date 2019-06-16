@@ -6,7 +6,7 @@ import ARCHIE from '../data/archie.json';
 const app = new Timeline({
   target: document.querySelector('section.timeline-container'),
   props: {
-    events: ARCHIE.events
+    content: ARCHIE.content
   }
 });
 

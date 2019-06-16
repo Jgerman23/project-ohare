@@ -1,14 +1,8 @@
 <script>
-  import Dummy from "dummyjs";
   import md from "marked";
   import { groupBy } from "./utils";
 
-  let visible = true;
-  let currentDate;
-
-  export let events = [];
-
-  $: groupedEvents = groupBy("Date")(events);
+  export let content = [];
 </script>
 
 <style>
@@ -42,12 +36,21 @@
     left: var(--timeline-margin);
   }
 
+  .timeline-section-heading {
+    margin-top: 2.5rem;
+    margin-bottom: 1rem;
+  }
+
   .date-heading {
     line-height: 1;
     display: flex;
     align-items: center;
     font-size: 1.2rem;
     margin-top: 1.5rem;
+  }
+
+  .date-heading:first-of-type {
+    margin-top: 0;
   }
 
   .date-heading::before {
@@ -67,22 +70,29 @@
 </style>
 
 <div class="timeline">
-  <h2 class="timeline-section-heading">{Dummy.text(4)}</h2>
-  <div class="timeline-section">
-    {#each Object.entries(groupedEvents) as [date, events] (date)}
-      <h3 class="date-heading">{date}</h3>
-      {#each events as event (event)}
-        <div class="card event">
-          {@html md(event.Description)}
-          {#if event.tags && event.tags.length > 0}
-            <p class="tags">
-              {#each event.tags as tag}
-                <span class="tag">{tag.value}</span>
-              {/each}
-            </p>
-          {/if}
-        </div>
-      {/each}
-    {/each}
-  </div>
+  {#each content as contentItem}
+    {#if contentItem.type == 'Heading'}
+      <h2 class="timeline-section-heading">{contentItem.value}</h2>
+    {/if}
+
+    {#if contentItem.type == 'events'}
+      <div class="timeline-section">
+        {#each Object.entries(groupBy('Date')(contentItem.value)) as [date, events] (date)}
+          <h3 class="date-heading">{date}</h3>
+          {#each events as event (event)}
+            <div class="card event">
+              {@html md(event.Description)}
+              {#if event.tags && event.tags.length > 0}
+                <p class="tags">
+                  {#each event.tags as tag}
+                    <span class="tag">{tag.value}</span>
+                  {/each}
+                </p>
+              {/if}
+            </div>
+          {/each}
+        {/each}
+      </div>
+    {/if}
+  {/each}
 </div>
