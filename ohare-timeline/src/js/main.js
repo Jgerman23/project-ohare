@@ -1,15 +1,15 @@
 import '../scss/main.scss';
 import './share';
-// import App from './App.svelte';
+import Timeline from './Timeline.svelte';
+import ARCHIE from '../data/archie.json';
 
-// const app = new App({
-//   target: document.querySelector('article.main'),
-//   anchor: document.querySelector('section.story'),
-//   props: {
-//     name: 'world'
-//   }
-// });
+const app = new Timeline({
+  target: document.querySelector('section.timeline-container'),
+  props: {
+    events: ARCHIE.events
+  }
+});
 
-// window.app = app;
+window.app = app;
 
-// export default app;
+export default app;

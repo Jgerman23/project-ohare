@@ -15,14 +15,6 @@
   @include fit-paragraph;
 }
 
-.tag {
-  background: gray;
-  color: white;
-  font-family: $sans;
-  padding: 0.3rem 0.25rem 0.2rem;
-  text-transform: uppercase;
-}
-
 .rail {
   height: 500px;
   background: lightgrey;
