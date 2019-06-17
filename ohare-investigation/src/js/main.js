@@ -1,5 +1,6 @@
 import '../scss/main.scss';
 import './share';
+
 // import App from './App.svelte';
 
 // const app = new App({
