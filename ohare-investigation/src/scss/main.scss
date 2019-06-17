@@ -1,5 +1,5 @@
 @font-face {
-  font-family: 'LED Calculator';
+  font-family: led-calculator;
   src: url('../static/fonts/ledcalculator-webfont.woff');
 }
 
@@ -34,7 +34,7 @@ nav.global .share {
 .dropcap {
   background: $dropcap-background;
   color: $accent;
-  font-family: 'LED Calculator', $sans;
+  font-family: led-calculator, $sans;
   font-size: 5rem;
   font-weight: 100;
   padding: 0.1ch;
@@ -58,7 +58,7 @@ nav.global .share {
   $c-background: transparentize(gray, 0.8);
 
   color: $accent;
-  font-family: 'LED Calculator';
+  font-family: led-calculator, $sans;
   font-weight: normal;
   text-align: center;
   text-transform: uppercase;
