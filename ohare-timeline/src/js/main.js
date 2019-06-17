@@ -1,3 +1,6 @@
+// import '@fortawesome/fontawesome-free/css/solid.css';
+import '@fortawesome/fontawesome-free/js/solid.js';
+
 import '../scss/main.scss';
 import './share';
 import Timeline from './Timeline.svelte';
@@ -13,3 +16,8 @@ const app = new Timeline({
 window.app = app;
 
 export default app;
+
+document.addEventListener('DOMContentLoaded', function() {
+  const hed = document.querySelector('.hed');
+  hed.innerHTML = hed.innerHTML.replace(/\S/g, '<b>$&</b>');
+});

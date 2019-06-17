@@ -14,6 +14,7 @@
     align-items: center;
     font-size: 1.2rem;
     margin-top: 1.5rem;
+    font-family: acumin-pro, sans-serif;
   }
 
   .date-heading:first-of-type {
@@ -32,7 +33,7 @@
   }
 
   .timeline-events {
-    --timeline-color: #1a1a1a;
+    --timeline-color: ivory;
     --timeline-margin: 5px;
     position: relative;
     padding-left: 1.5rem;
@@ -53,6 +54,7 @@
   /* other */
 
   .card {
+    background: DimGray;
     padding: 1rem 1rem 1.5rem;
   }
 

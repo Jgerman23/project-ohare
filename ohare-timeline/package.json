@@ -4,6 +4,7 @@
   "devDependencies": {
     "@babel/core": "^7.4.5",
     "@babel/preset-env": "^7.4.5",
+    "@fortawesome/fontawesome-free": "^5.9.0",
     "@newswire/doc-to-archieml": "^1.0.0",
     "@newswire/sheet-to-data": "^1.0.0",
     "autoprefixer": "^9.6.0",
@@ -15,6 +16,7 @@
     "css-loader": "^2.1.1",
     "dotenv": "^8.0.0",
     "dummyjs": "^1.1.7",
+    "file-loader": "^4.0.0",
     "gulp": "^4.0.2",
     "gulp-awspublish": "^4.0.0",
     "gulp-cloudfront-invalidate-aws-publish": "^1.0.0",

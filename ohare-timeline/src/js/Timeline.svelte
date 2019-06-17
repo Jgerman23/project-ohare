@@ -18,7 +18,10 @@
 <div class="timeline">
   {#each content as contentItem}
     {#if contentItem.type == 'Heading'}
-      <h2 class="timeline-heading">{contentItem.value}</h2>
+      <h2 class="timeline-heading">
+        <i class="fas fa-plane" />
+         {contentItem.value}
+      </h2>
     {/if}
 
     {#if contentItem.type == 'events'}

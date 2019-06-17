@@ -1,12 +1,4 @@
-@import '~bga-style/scss/webpack';
-
-.dropcap,
-.story > p:first-child::first-letter {
-  font-size: unset;
-  float: unset;
-  font-weight: unset;
-  padding-right: unset;
-}
+@import '/Users/pjudge/bettergov/projects/ohare-investigation/src/scss/main';
 
 .card.event {
   float: unset;
@@ -21,4 +13,19 @@
   float: right;
   position: sticky;
   top: 1rem;
+}
+
+.timeline-heading {
+  border-bottom: solid 4px $accent;
+  color: $accent;
+  padding-bottom: 0.5rem;
+  margin-top: 3rem;
+  margin-bottom: 1rem;
+  font-family: $sans;
+  font-size: 2rem;
+
+  .fa-plane {
+    margin-right: 0.5rem;
+    transform: rotate(-90deg);
+  }
 }
