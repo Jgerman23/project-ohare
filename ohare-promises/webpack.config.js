@@ -40,7 +40,8 @@ let webpackConfig = {
           loader: 'svelte-loader',
           options: {
             emitCss: true,
-            hotReload: prod ? false : true
+            hotReload: prod ? false : true,
+            preprocess: require('svelte-preprocess')({})
           }
         }
       },

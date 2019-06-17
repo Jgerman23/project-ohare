@@ -44,7 +44,7 @@
     .replace(/\S/g, "<b>$&</b>")
     .replace(
       /\s/g,
-      `</div><div><b class="space">${String.fromCharCode(160)}</b></div><div>`
+      `</div><div class="space"><b>${String.fromCharCode(160)}</b></div><div>`
     );
 
   const headingHTML = `
@@ -54,12 +54,46 @@
   `;
 </script>
 
-<style>
-  .project-heading {
+<style lang="scss">
+  $c-width: 25px;
+  $c-spacing: 5px;
+  $c-background: transparentize(gray, 0.8);
+
+  :global(.project-heading) {
+    font-family: "LED Calculator";
+    font-weight: 100;
+    text-transform: uppercase;
+
     display: flex;
-    /* align-items: stretch; */
     justify-content: flex-start;
     text-align: center;
+    flex-wrap: wrap;
+
+    .spacer {
+      flex-grow: 1;
+
+      background: repeating-linear-gradient(
+        to right,
+        $c-background,
+        $c-background $c-width,
+        transparent $c-width,
+        transparent calc(#{$c-width} + #{$c-spacing})
+      );
+    }
+
+    > div {
+      display: flex;
+      margin-bottom: $c-spacing;
+    }
+
+    > div > b {
+      background: $c-background;
+      font-size: 2rem;
+      font-weight: 100;
+      line-height: 1.4;
+      margin-right: $c-spacing;
+      width: $c-width;
+    }
   }
 
   .project-heading > :global(span) {
