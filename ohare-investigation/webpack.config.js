@@ -43,6 +43,10 @@ let webpackConfig = {
             hotReload: prod ? false : true
           }
         }
+      },
+      {
+        test: /\.(png|jpg|jpeg|gif|svg|woff|woff2|ttf|eot)$/,
+        use: 'file-loader'
       }
     ]
   },

@@ -1,12 +1,83 @@
+$fa-font-path: '~@fortawesome/fontawesome-free/webfonts';
+@import '~@fortawesome/fontawesome-free/scss/fontawesome';
+
+@font-face {
+  font-family: 'LED Calculator';
+  src: url('../static/fonts/ledcalculator-webfont.woff');
+}
+
+$highlight: transparentize(LemonChiffon, 0.5);
+$primary-text-color: ivory;
+$secondary-text-color: ivory;
+$accent: saturate(DarkKhaki, 30%);
+
 @import '~bga-style/scss/webpack';
 @import './art';
 
-nav.global {
-  background: transparent;
-  border-bottom: none;
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  z-index: 9;
+// nav.global {
+//   background: transparent;
+//   border-bottom: none;
+//   position: absolute;
+//   top: 0;
+//   left: 0;
+//   right: 0;
+//   z-index: 9;
+// }
+
+body {
+  // background: #1a1a1a;
+  background: darken(DimGray, 30%);
+  // color: ivory;
+}
+
+.dropcap {
+  background: transparentize(gray, 0.8);
+  color: $accent;
+  font-family: 'LED Calculator', $sans;
+  font-size: 5rem;
+  font-weight: 100;
+  padding: 0.1ch;
+
+  position: relative;
+  top: -0.2ch;
+}
+
+.intro .hed {
+  color: $accent;
+  font-family: 'LED Calculator';
+  // font-size: 5rem;
+  font-weight: normal;
+  text-transform: uppercase;
+
+  > b {
+    background: transparentize(gray, 0.8);
+    font-weight: 100;
+    line-height: 1.4;
+    padding: 0 0.1ch;
+    margin: 0 0.05ch;
+  }
+}
+
+.intro .dek,
+.intro .bylines {
+  font-family: $sans;
+}
+
+.story > .subhed {
+  border-bottom: solid 4px $accent;
+  color: $accent;
+  padding-bottom: 0.5rem;
+  margin-top: 3rem;
+  margin-bottom: 1rem;
+  font-family: $sans;
+  font-size: 2rem;
+
+  .fa-plane {
+    margin-right: 0.5rem;
+    transform: rotate(-90deg);
+  }
+}
+
+.subhed + p::first-letter {
+  @extend .dropcap;
 }

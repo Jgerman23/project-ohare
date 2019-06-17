@@ -2,9 +2,9 @@
 
 <section class="intro">
 
-  <header class="header--top header--center header--heroic header--drop-mobile">
+  <header class="header--center">
 
-    <figure class="lede-image">
+    <!-- <figure class="lede-image">
       {{ jpg(ARCHIE.top.hero.source) }}
       {# <img src="https://via.placeholder.com/800x450" /> #}
       
@@ -12,17 +12,17 @@
         <span class="cutline">{{ ARCHIE.top.hero.cutline }}</span>
         {# <span class="cutline">Sample photographer | DNE</span> #}
       </figcaption>
-    </figure>
+    </figure> -->
     
     <div class="lede-copy">
       <h1 class="hed">
-        {{ARCHIE.top.headline}}
+        {{- ARCHIE.top.headline -}}
       </h1>
       <div class="dek">
-        {{ARCHIE.top.deck}}
+        {{- ARCHIE.top.deck -}}
       </div>
       <div class="bylines">
-        {{ ARCHIE.top.byline | safe }}
+        {{- ARCHIE.top.byline | safe -}}
       </div>
     </div>
   
@@ -33,12 +33,12 @@
   <div class="info">
     <p>
       <span class="timestamp">
-        <time datetime="{{ARCHIE.top.timestamp}}">{{ARCHIE.top.date}}</time>
+        <time datetime="{{- ARCHIE.top.timestamp -}}">{{- ARCHIE.top.date -}}</time>
       </span>
     </p>
 
     <p>
-      {{ARCHIE.top.partner_language | safe}}
+      {{- ARCHIE.top.partner_language | safe -}}
     </p>
   </div>
 </section>
