@@ -45,9 +45,9 @@ export const onResize = function(selector) {
         spaceEl.getBoundingClientRect().top ===
           getPrevSibling(spaceEl, 'div').getBoundingClientRect().top
       ) {
-        spaceEl.classList.remove('invisible');
+        spaceEl.classList.remove('u-invisible');
       } else {
-        spaceEl.classList.add('invisible');
+        spaceEl.classList.add('u-invisible');
       }
     });
   });
