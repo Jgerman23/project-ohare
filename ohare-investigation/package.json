@@ -58,6 +58,6 @@
     "preview:watch": "yarn build --watch & nodemon --watch public --exec 'http-server -p 3000 public'"
   },
   "dependencies": {
-    "@fortawesome/fontawesome-free": "^5.9.0"
+    "debounce": "^1.2.0"
   }
 }

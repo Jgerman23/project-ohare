@@ -1,6 +1,3 @@
-$fa-font-path: '~@fortawesome/fontawesome-free/webfonts';
-@import '~@fortawesome/fontawesome-free/scss/fontawesome';
-
 @font-face {
   font-family: 'LED Calculator';
   src: url('../static/fonts/ledcalculator-webfont.woff');
@@ -46,19 +43,54 @@ nav.global .share {
   top: -0.2ch;
 }
 
-.intro .hed {
+.heading-terminal {
+  --c-width: 1.5rem;
+
+  @include media('>=phone') {
+    --c-width: 2.5rem;
+  }
+
+  @include media('>=desktop') {
+    --c-width: 3rem;
+  }
+
+  $c-spacing: 0.2em;
+  $c-background: transparentize(gray, 0.8);
+
   color: $accent;
   font-family: 'LED Calculator';
-  // font-size: 5rem;
   font-weight: normal;
+  text-align: center;
   text-transform: uppercase;
 
-  > b {
-    background: $dropcap-background;
-    font-weight: 100;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+
+  .spacer {
+    flex-grow: 1;
+
+    background: repeating-linear-gradient(
+      to right,
+      $c-background,
+      $c-background var(--c-width),
+      transparent var(--c-width),
+      transparent calc(var(--c-width) + #{$c-spacing})
+    );
+  }
+
+  > div {
+    display: flex;
+    margin-bottom: $c-spacing;
+  }
+
+  > div > b {
+    background: $c-background;
+    font-size: var(--c-width);
+    font-weight: normal;
     line-height: 1.4;
-    padding: 0 0.1ch;
-    margin: 0 0.05ch;
+    margin-right: $c-spacing;
+    width: var(--c-width);
   }
 }
 
@@ -84,4 +116,8 @@ nav.global .share {
 
 .intro > hr {
   margin-bottom: 1rem;
+}
+
+.invisible {
+  visibility: hidden;
 }
