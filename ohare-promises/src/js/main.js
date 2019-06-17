@@ -13,3 +13,8 @@ const app = new App({
 window.app = app;
 
 export default app;
+
+document.addEventListener('DOMContentLoaded', function() {
+  const hed = document.querySelector('.hed');
+  hed.innerHTML = hed.innerHTML.replace(/\S/g, '<b>$&</b>');
+});
