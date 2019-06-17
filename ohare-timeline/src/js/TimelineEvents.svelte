@@ -53,15 +53,11 @@
 
   /* other */
 
-  .card {
-    background: DimGray;
-    padding: 1rem 1rem 1.5rem;
-  }
-
   .tag {
-    background: gray;
     color: white;
+    font-size: 0.9rem;
     padding: 0.3rem 0.25rem 0.2rem;
+    margin-right: 0.5rem;
     text-transform: uppercase;
   }
 </style>
@@ -70,7 +66,7 @@
   {#each Object.entries(groupedEvents) as [date, events] (date)}
     <h3 class="date-heading">{date}</h3>
     {#each events as event (event)}
-      <div class="card event">
+      <div class="tl-event">
         {@html md(event.Description)}
         {#if event.tags && event.tags.length > 0}
           <p class="tags">

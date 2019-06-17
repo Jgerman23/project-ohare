@@ -1,10 +1,29 @@
 @import '/Users/pjudge/bettergov/projects/ohare-investigation/src/scss/main';
 
-.card.event {
+.tl-event {
   float: unset;
   margin-left: unset;
   max-width: unset;
   @include fit-paragraph;
+
+  margin-bottom: 2rem;
+
+  * {
+    font-family: $sans;
+  }
+
+  &::before {
+    content: '';
+    display: block;
+    width: 4rem;
+    height: 4px;
+    background: $accent;
+    margin-bottom: 0.5rem;
+  }
+
+  .tag {
+    background: $dropcap-background;
+  }
 }
 
 .rail {
