@@ -12,14 +12,14 @@
   });
 </script>
 
-<style>
+<style lang="scss">
   h3[data-year] {
     position: relative;
   }
 
   h3[data-year]::before {
     content: attr(data-year);
-    color: slategray;
+    color: ivory;
     display: block;
     margin-bottom: 0.5rem;
   }
@@ -37,13 +37,14 @@
     width: 100%;
   }
 
-  table td:first-child,
-  table th:first-child {
+  td:first-child,
+  th:first-child {
     width: 11.05ch; /* width of "Description" */
+    text-align: left !important;
   }
 
-  table td,
-  table th {
+  td,
+  th {
     padding: 0.5rem;
     hyphens: auto;
   }
@@ -51,17 +52,19 @@
   .project-individual {
     margin-bottom: 3rem;
   }
+
+  tr[data-name="date"] td,
+  tr[data-name="cost"] td {
+    text-align: center;
+  }
 </style>
 
 <div class="projects-container">
-  <!-- <h2 class="project-heading">
-    {@html headingHTML}
-  </h2> -->
   <Heading {title} />
 
   {#each projects as { date, description, promised, delivered }}
     <div class="project-individual">
-      <h3 data-year={date}>{description}</h3>
+      <h3 data-year={date} class="date-heading">{description}</h3>
 
       <table lang="en-us">
         <thead>
@@ -69,17 +72,17 @@
           <th>{promised.title}</th>
           <th>{delivered.title}</th>
         </thead>
-        <tr>
+        <tr data-name="date">
           <td>Date</td>
           <td>{promised.date}</td>
           <td>{delivered.date}</td>
         </tr>
-        <tr>
+        <tr data-name="cost">
           <td>Cost</td>
           <td>{promised.cost}</td>
           <td>{delivered.cost}</td>
         </tr>
-        <tr>
+        <tr data-name="description">
           <td>Description</td>
           <td>{promised.description}</td>
           <td>{delivered.description}</td>
