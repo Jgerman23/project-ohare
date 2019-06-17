@@ -1,6 +1,6 @@
 import '../scss/main.scss';
-import './share';
 import App from './App.svelte';
+import 'ohare-investigation/src/js/main';
 
 const app = new App({
   target: document.querySelector('article.main'),
@@ -13,8 +13,3 @@ const app = new App({
 window.app = app;
 
 export default app;
-
-document.addEventListener('DOMContentLoaded', function() {
-  const hed = document.querySelector('.hed');
-  hed.innerHTML = hed.innerHTML.replace(/\S/g, '<b>$&</b>');
-});

@@ -36,6 +36,7 @@
     "nodemon": "^1.19.1",
     "nunjucks": "^3.2.0",
     "nunjucks-webpack-plugin": "^5.0.0",
+    "ohare-investigation": "file:/Users/pjudge/bettergov/projects/ohare-investigation",
     "open": "^6.3.0",
     "optimize-css-assets-webpack-plugin": "^5.0.1",
     "postcss-loader": "^3.0.0",

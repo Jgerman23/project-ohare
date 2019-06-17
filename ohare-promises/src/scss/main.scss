@@ -1,13 +1,9 @@
 $table_border_dark: ivory;
 
-@import '/Users/pjudge/bettergov/projects/ohare-investigation/src/scss/main';
+@import '~ohare-investigation/src/scss/main';
 
 .project-heading {
   color: $accent;
-}
-
-.invisible {
-  visibility: hidden;
 }
 
 th {
@@ -15,7 +11,7 @@ th {
 }
 
 .date-heading {
-  // border-bottom: solid 4px $accent;
+  border-bottom: solid 4px $accent;
   color: $accent;
   padding-bottom: 0.5rem;
   margin-top: 3rem;

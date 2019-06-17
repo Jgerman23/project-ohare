@@ -1,66 +1,42 @@
 <script context="module">
   import debounce from "debounce";
-
-  const onResize = function() {
-    const headings = document.querySelectorAll(".project-heading");
-    const parentWidth = headings[0].parentNode.getBoundingClientRect().width;
-
-    const newWidth = Math.floor(parentWidth / 30) * 30;
-
-    headings.forEach(heading => {
-      heading.style.width = newWidth + "px";
-
-      const spaces = heading.querySelectorAll("div.space, div.spacer");
-
-      spaces.forEach(spaceEl => {
-        if (
-          spaceEl.getBoundingClientRect().top !==
-          spaceEl.nextElementSibling.getBoundingClientRect().top
-        ) {
-          spaceEl.classList.add("invisible");
-        } else {
-          spaceEl.classList.remove("invisible");
-        }
-      });
-    });
-  };
+  import { onResize } from "ohare-investigation/src/js/heading-terminal";
 
   document.addEventListener("DOMContentLoaded", function() {
-    window.addEventListener("resize", debounce(onResize, 200));
-    setTimeout(onResize, 500);
+    window.addEventListener(
+      "resize",
+      debounce(() => onResize(".project-heading"), 200)
+    );
+    setTimeout(() => onResize(".project-heading"), 500);
   });
 </script>
 
 <script>
   export let title;
 
-  $: {
-    console.log(title);
-  }
+  const delayedHTML = `<div class="red">${"Delayed".replace(
+    /./g,
+    "<b>$&</b>"
+  )}</div>`;
 
-  const delayedHTML = `${"Delayed".replace(/./g, "<b>$&</b>")}`;
-
-  const projectHTML = title
-    .replace(/\S/g, "<b>$&</b>")
-    .replace(
-      /\s/g,
-      `</div><div class="space"><b>${String.fromCharCode(160)}</b></div><div>`
-    );
-
-  const headingHTML = `
-  <div>${projectHTML}</div>
-  <div class='spacer'></div>
-  <div class="red">${delayedHTML}</div>
-  `;
+  const projectHTML =
+    "<div>" +
+    title
+      .replace(/\S/g, "<b>$&</b>")
+      .replace(
+        /\s/g,
+        `</div><div class="space"><b>${String.fromCharCode(160)}</b></div><div>`
+      ) +
+    "</div>";
 </script>
 
 <style lang="scss">
-  $c-width: 25px;
-  $c-spacing: 5px;
-  $c-background: transparentize(gray, 0.8);
-
   :global(.project-heading) {
-    font-family: "LED Calculator";
+    --c-width: 25px;
+    --c-spacing: 5px;
+    --c-background: #{transparentize(gray, 0.8)};
+
+    font-family: led-calculator;
     font-weight: 100;
     text-transform: uppercase;
 
@@ -74,25 +50,25 @@
 
       background: repeating-linear-gradient(
         to right,
-        $c-background,
-        $c-background $c-width,
-        transparent $c-width,
-        transparent calc(#{$c-width} + #{$c-spacing})
+        var(--c-background),
+        var(--c-background) var(--c-width),
+        transparent var(--c-width),
+        transparent calc(var(--c-width) + var(--c-spacing))
       );
     }
 
     > div {
       display: flex;
-      margin-bottom: $c-spacing;
+      margin-bottom: var(--c-spacing);
     }
 
     > div > b {
-      background: $c-background;
+      background: var(--c-background);
       font-size: 2rem;
       font-weight: 100;
       line-height: 1.4;
-      margin-right: $c-spacing;
-      width: $c-width;
+      margin-right: var(--c-spacing);
+      width: var(--c-width);
     }
   }
 
@@ -106,5 +82,7 @@
 </style>
 
 <h2 class="project-heading">
-  {@html headingHTML}
+  {@html projectHTML}
+  <div class="spacer" />
+  {@html delayedHTML}
 </h2>
