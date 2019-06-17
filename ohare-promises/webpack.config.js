@@ -15,8 +15,7 @@ let webpackConfig = {
   },
   output: {
     path: path.resolve(__dirname, 'public'),
-    filename: '[name].[hash].js',
-    publicPath: '/'
+    filename: '[name].[hash].js'
   },
   module: {
     rules: [
@@ -58,7 +57,8 @@ let webpackConfig = {
     }),
     new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/) // ignore moment locales
   ],
-  devtool: prod ? false : 'inline-cheap-source-map'
+  devtool: prod ? false : 'inline-cheap-source-map',
+  stats: 'minimal'
 };
 
 // prod options
