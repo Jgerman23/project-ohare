@@ -1,5 +1,5 @@
 import '../scss/main.scss';
-import './share';
+import 'ohare-investigation/src/js/main';
 import Timeline from './Timeline.svelte';
 import ARCHIE from '../data/archie.json';
 
@@ -13,8 +13,3 @@ const app = new Timeline({
 window.app = app;
 
 export default app;
-
-document.addEventListener('DOMContentLoaded', function() {
-  const hed = document.querySelector('.hed');
-  hed.innerHTML = hed.innerHTML.replace(/\S/g, '<b>$&</b>');
-});
