@@ -60,6 +60,7 @@
     "preview:watch": "yarn build --watch & http-server -p 3000 public"
   },
   "dependencies": {
+    "debounce": "^1.2.0",
     "lodash": "^4.17.11"
   }
 }

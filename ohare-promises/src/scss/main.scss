@@ -1,1 +1,43 @@
 @import '/Users/pjudge/bettergov/projects/ohare-investigation/src/scss/main';
+
+.project-heading {
+  $c-width: 25px;
+  $c-spacing: 5px;
+  $c-background: transparentize(gray, 0.8);
+
+  color: $accent;
+  font-family: 'LED Calculator';
+  font-weight: normal;
+  text-transform: uppercase;
+  flex-wrap: wrap;
+
+  .spacer {
+    flex-grow: 1;
+
+    background: repeating-linear-gradient(
+      to right,
+      $c-background,
+      $c-background $c-width,
+      transparent $c-width,
+      transparent calc(#{$c-width} + #{$c-spacing})
+    );
+  }
+
+  > div {
+    display: flex;
+    margin-bottom: $c-spacing;
+  }
+
+  > div > b {
+    background: $c-background;
+    font-size: 2rem;
+    font-weight: 100;
+    line-height: 1.4;
+    margin-right: $c-spacing;
+    width: $c-width;
+  }
+}
+
+.invisible {
+  visibility: hidden;
+}

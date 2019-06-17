@@ -16,7 +16,7 @@
 <section class="story">
   <p class="align-center">{Dummy.text(60)}</p>
   <hr />
-  <Inner projects={terminal} title="Terminal" />
+  <Inner projects={terminal} title="Intl Terminal" />
   <hr />
   <Inner projects={peopleMover} title="People Mover" />
   <hr />
