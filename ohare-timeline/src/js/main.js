@@ -1,6 +1,3 @@
-// import '@fortawesome/fontawesome-free/css/solid.css';
-import '@fortawesome/fontawesome-free/js/solid.js';
-
 import '../scss/main.scss';
 import './share';
 import Timeline from './Timeline.svelte';

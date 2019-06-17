@@ -4,7 +4,6 @@
   "devDependencies": {
     "@babel/core": "^7.4.5",
     "@babel/preset-env": "^7.4.5",
-    "@fortawesome/fontawesome-free": "^5.9.0",
     "@newswire/doc-to-archieml": "^1.0.0",
     "@newswire/sheet-to-data": "^1.0.0",
     "autoprefixer": "^9.6.0",
