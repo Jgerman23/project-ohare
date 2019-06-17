@@ -14,24 +14,28 @@ $accent: saturate(DarkKhaki, 30%);
 @import '~bga-style/scss/webpack';
 @import './art';
 
-// nav.global {
-//   background: transparent;
-//   border-bottom: none;
-//   position: absolute;
-//   top: 0;
-//   left: 0;
-//   right: 0;
-//   z-index: 9;
-// }
+$dropcap-background: transparentize(gray, 0.8);
 
 body {
-  // background: #1a1a1a;
   background: darken(DimGray, 30%);
-  // color: ivory;
+}
+
+nav.global {
+  border-bottom: none;
+}
+
+nav.global .icon--bga-logo,
+nav.global .share {
+  color: ivory;
+
+  &:hover,
+  &:focus {
+    color: transparentize(ivory, 0.2);
+  }
 }
 
 .dropcap {
-  background: transparentize(gray, 0.8);
+  background: $dropcap-background;
   color: $accent;
   font-family: 'LED Calculator', $sans;
   font-size: 5rem;
@@ -50,7 +54,7 @@ body {
   text-transform: uppercase;
 
   > b {
-    background: transparentize(gray, 0.8);
+    background: $dropcap-background;
     font-weight: 100;
     line-height: 1.4;
     padding: 0 0.1ch;
@@ -78,6 +82,6 @@ body {
   }
 }
 
-.subhed + p::first-letter {
-  @extend .dropcap;
+.intro > hr {
+  margin-bottom: 1rem;
 }
