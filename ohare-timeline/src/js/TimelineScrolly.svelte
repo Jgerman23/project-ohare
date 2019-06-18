@@ -104,7 +104,7 @@
   }
 </style>
 
-<div class="timeline is-scrolly">
+<div class="timeline is-scrolly" id="timeline-inner">
   {#each content as contentItem}
     {#if contentItem.type == 'Heading'}
       <h2 class="timeline-heading">

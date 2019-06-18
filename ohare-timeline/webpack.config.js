@@ -40,7 +40,8 @@ let webpackConfig = {
           options: {
             emitCss: true,
             hotReload: prod ? false : true,
-            preprocess: require('svelte-preprocess')()
+            preprocess: require('svelte-preprocess')(),
+            hydratable: prod ? true : false
           }
         }
       },
