@@ -1,9 +1,10 @@
 import '../scss/main.scss';
 import 'ohare-investigation/src/js/main';
 import Timeline from './Timeline.svelte';
+import TimelineScrolly from './TimelineScrolly.svelte';
 import ARCHIE from '../data/archie.json';
 
-const app = new Timeline({
+const app = new TimelineScrolly({
   target: document.querySelector('section.timeline-container'),
   props: {
     content: ARCHIE.content
