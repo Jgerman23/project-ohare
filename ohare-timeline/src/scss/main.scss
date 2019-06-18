@@ -4,7 +4,6 @@
   float: unset;
   margin-left: unset;
   max-width: unset;
-  @include fit-paragraph;
 
   * {
     font-family: $sans;
@@ -45,4 +44,23 @@
     margin-right: 0.5rem;
     transform: rotate(-90deg);
   }
+}
+
+.image-container-inner {
+  // @include fit-inner;
+  width: calc(100vw - 2rem);
+  max-width: calc(100vw - 2rem);
+  margin-left: auto;
+  margin-right: auto;
+
+  @include media('>=desktop') {
+    width: calc(#{$desktop-max-content-width} + 10rem);
+  }
+}
+
+.date-heading,
+.tl-event {
+  @include fit-paragraph;
+  z-index: 2;
+  // background: $dropcap-background;
 }

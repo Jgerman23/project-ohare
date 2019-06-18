@@ -4,8 +4,10 @@
   export let events;
 </script>
 
-<style>
+<style lang="scss">
   .date-heading {
+    margin-bottom: 0;
+    padding-bottom: 1.2rem;
     line-height: 1;
     display: flex;
     align-items: center;
@@ -61,6 +63,49 @@
     margin-right: 0.5rem;
     text-transform: uppercase;
   }
+
+  img {
+    filter: invert(100%);
+  }
+
+  figure.medium {
+    width: 20rem;
+  }
+
+  figcaption {
+    text-align: right;
+    text-transform: uppercase;
+    font-weight: normal;
+    letter-spacing: 0.1rem;
+  }
+
+  :global(.is-scrolly) .image-container {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 1;
+
+    pointer-events: none;
+
+    display: flex;
+    align-items: center;
+
+    .image-container-inner {
+      position: relative;
+    }
+
+    figure {
+      pointer-events: all;
+      opacity: 0.85;
+    }
+
+    figure.align-right {
+      float: right;
+      // margin-right: 5rem;
+    }
+  }
 </style>
 
 <div class="timeline-events">
@@ -77,6 +122,16 @@
           </p>
         {/if}
       </div>
+      {#if event.image}
+        <div class="image-container">
+          <div class="image-container-inner">
+            <figure class={event.image.class}>
+              <img src={'images/' + event.image.src} alt={event.image.alt} />
+              <figcaption class="sans">{event.image.cutline}</figcaption>
+            </figure>
+          </div>
+        </div>
+      {/if}
     </div>
   {/each}
 </div>
