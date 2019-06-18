@@ -65,7 +65,11 @@
   }
 
   img {
-    filter: invert(100%) opacity(80%);
+    filter: invert(100%) brightness(0.85);
+  }
+
+  figure {
+    max-width: 100%;
   }
 
   figure.medium {
@@ -100,14 +104,8 @@
       position: relative;
     }
 
-    figure {
-      pointer-events: all;
-      // opacity: 0.85;
-    }
-
     figure.align-right {
       float: right;
-      // margin-right: 5rem;
     }
   }
 </style>

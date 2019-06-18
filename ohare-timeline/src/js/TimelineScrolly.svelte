@@ -1,39 +1,25 @@
 <script context="module">
-  let eventItems;
-
-  const onScroll = () => {
-    eventItems.forEach(ei => {
-      var eiBottom = ei.querySelector(".tl-event").getBoundingClientRect()
-        .bottom;
-
-      // if (eiBottom <= 200) {
-      // ei.style.opacity = eiBottom / 200;
-      if (eiBottom < 0) {
-        ei.style.opacity = 0;
-        return;
-      } else {
-        ei.style.opacity = 1;
-      }
-
-      var h = window.innerHeight;
-      var eiTop = ei.querySelector(".tl-event").getBoundingClientRect().top;
-
-      // if (h - eiTop <= 200) {
-      // ei.style.opacity = (h - eiTop) / 200;
-      if (h - eiTop < 0) {
-        ei.style.opacity = 0;
-      } else {
-        ei.style.opacity = 1;
-      }
-    });
-  };
+  let eventItems, observer;
 
   const onLoad = () => {
-    eventItems = document.querySelectorAll(".tl-event-container");
+    eventItems = document.querySelectorAll(".tl-event-container .tl-text");
 
-    window.addEventListener("scroll", onScroll);
+    observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.intersectionRatio > 0) {
+          document
+            .querySelectorAll(".tl-event-container.is-active")
+            .forEach(ei => ei.classList.remove("is-active"));
+          entry.target.parentNode.classList.add("is-active");
+        } else {
+          entry.target.classList.remove("is-active");
+        }
+      });
+    });
 
-    onScroll();
+    eventItems.forEach(ei => {
+      observer.observe(ei);
+    });
   };
 
   window.addEventListener("load", onLoad);
@@ -47,7 +33,8 @@
 
 <style lang="scss">
   .timeline-heading {
-    margin-top: 4rem;
+    padding-top: 4rem;
+    margin-top: 0;
     margin-bottom: 1rem;
   }
 
@@ -59,13 +46,24 @@
     .tl-event-container {
       display: flex;
       flex-direction: column;
-      justify-content: center;
+      justify-content: flex-end;
 
       overflow: hidden;
       height: auto;
-      min-height: 80vh;
+      min-height: 100vh;
 
-      transition: opacity 0.3s ease;
+      .image-container {
+        opacity: 0;
+        transition: opacity 0.3s ease;
+      }
+
+      &.is-active .image-container {
+        opacity: 1;
+      }
+
+      &.is-active figure {
+        pointer-events: all;
+      }
     }
   }
 

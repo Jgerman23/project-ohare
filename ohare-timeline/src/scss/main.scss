@@ -35,7 +35,8 @@
   border-bottom: solid 4px $accent;
   color: $accent;
   padding-bottom: 0.5rem;
-  margin-top: 3rem;
+  padding-top: 3rem;
+  margin-top: 0;
   margin-bottom: 1rem;
   font-family: $sans;
   font-size: 2rem;
@@ -63,4 +64,49 @@
   z-index: 2;
   background: transparentize($page-background, 0.2);
   padding: 1rem;
+}
+
+.image-container {
+  // background: azure;
+  z-index: -2;
+  // pointer-events: none;
+}
+
+section.story,
+.timeline-heading {
+  // background: $page-background;
+  position: relative;
+  z-index: 2;
+}
+
+section.timeline-container {
+  margin-top: 0;
+}
+
+.intro {
+  padding-bottom: 2rem;
+}
+
+.intro,
+.story,
+.timeline-heading {
+  background: $page-background;
+  position: relative;
+  z-index: 2;
+  margin-top: 0;
+  margin-bottom: 0;
+
+  &::after {
+    content: '';
+    width: 100vw;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    background: $page-background;
+    z-index: -1;
+  }
+}
+
+.image-container {
+  // background: $page-background;
 }
