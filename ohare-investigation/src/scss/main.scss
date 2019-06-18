@@ -12,9 +12,10 @@ $accent: saturate(DarkKhaki, 30%);
 @import './art';
 
 $dropcap-background: transparentize(gray, 0.8);
+$page-background: darken(DimGray, 30%);
 
 body {
-  background: darken(DimGray, 30%);
+  background: $page-background;
 }
 
 nav.global {
