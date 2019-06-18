@@ -65,7 +65,7 @@ nav.global .share {
 
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
+  justify-content: flex-start;
 
   .spacer {
     flex-grow: 1;
@@ -120,5 +120,8 @@ nav.global .share {
 
 .u-invisible {
   visibility: hidden;
+}
+
+.u-w0 {
   width: 0;
 }
