@@ -58,9 +58,9 @@
   }
 }
 
-.date-heading,
-.tl-event {
+.tl-text {
   @include fit-paragraph;
   z-index: 2;
-  // background: $dropcap-background;
+  background: transparentize($page-background, 0.2);
+  padding: 1rem;
 }

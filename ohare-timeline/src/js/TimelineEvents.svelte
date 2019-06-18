@@ -65,11 +65,15 @@
   }
 
   img {
-    filter: invert(100%);
+    filter: invert(100%) opacity(80%);
   }
 
   figure.medium {
     width: 20rem;
+  }
+
+  figure.large {
+    width: 40rem;
   }
 
   figcaption {
@@ -98,7 +102,7 @@
 
     figure {
       pointer-events: all;
-      opacity: 0.85;
+      // opacity: 0.85;
     }
 
     figure.align-right {
@@ -111,16 +115,18 @@
 <div class="timeline-events">
   {#each events as event (event)}
     <div class="tl-event-container">
-      <h3 class="date-heading">{event.Date}</h3>
-      <div class="tl-event">
-        {@html md(event.Description)}
-        {#if event.tags && event.tags.length > 0}
-          <p class="tags">
-            {#each event.tags as tag}
-              <span class="tag">{tag.value}</span>
-            {/each}
-          </p>
-        {/if}
+      <div class="tl-text">
+        <h3 class="date-heading">{event.Date}</h3>
+        <div class="tl-event">
+          {@html md(event.Description)}
+          {#if event.tags && event.tags.length > 0}
+            <p class="tags">
+              {#each event.tags as tag}
+                <span class="tag">{tag.value}</span>
+              {/each}
+            </p>
+          {/if}
+        </div>
       </div>
       {#if event.image}
         <div class="image-container">

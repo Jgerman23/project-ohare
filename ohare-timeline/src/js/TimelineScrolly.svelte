@@ -6,11 +6,11 @@
       var eiBottom = ei.querySelector(".tl-event").getBoundingClientRect()
         .bottom;
 
+      // if (eiBottom <= 200) {
+      // ei.style.opacity = eiBottom / 200;
       if (eiBottom < 0) {
         ei.style.opacity = 0;
         return;
-      } else if (eiBottom <= 200) {
-        ei.style.opacity = eiBottom / 200;
       } else {
         ei.style.opacity = 1;
       }
@@ -18,10 +18,10 @@
       var h = window.innerHeight;
       var eiTop = ei.querySelector(".tl-event").getBoundingClientRect().top;
 
+      // if (h - eiTop <= 200) {
+      // ei.style.opacity = (h - eiTop) / 200;
       if (h - eiTop < 0) {
         ei.style.opacity = 0;
-      } else if (h - eiTop <= 200) {
-        ei.style.opacity = (h - eiTop) / 200;
       } else {
         ei.style.opacity = 1;
       }
