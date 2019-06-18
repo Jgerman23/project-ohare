@@ -1,15 +1,12 @@
 <script context="module">
-  let eventItems, observer;
-
   const onLoad = () => {
-    eventItems = document.querySelectorAll(".tl-event-container .tl-text");
+    const eventItems = document.querySelectorAll(
+      ".tl-event-container .tl-text"
+    );
 
-    observer = new IntersectionObserver(entries => {
+    const eventItemObserver = new IntersectionObserver(entries => {
       entries.forEach(entry => {
-        if (entry.intersectionRatio > 0) {
-          // document
-          //   .querySelectorAll(".tl-event-container.is-active")
-          //   .forEach(ei => ei.classList.remove("is-active"));
+        if (entry.isIntersecting) {
           entry.target.parentNode.classList.add("is-active");
         } else {
           entry.target.parentNode.classList.remove("is-active");
@@ -18,7 +15,25 @@
     });
 
     eventItems.forEach(ei => {
-      observer.observe(ei);
+      eventItemObserver.observe(ei);
+    });
+
+    const headings = document.querySelectorAll(".timeline-heading");
+
+    const headingObserver = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          document.querySelector(".timeline").classList.add("hide-all-images");
+        } else {
+          document
+            .querySelector(".timeline")
+            .classList.remove("hide-all-images");
+        }
+      });
+    });
+
+    headings.forEach(h => {
+      headingObserver.observe(h);
     });
   };
 
@@ -56,8 +71,8 @@
         margin-top: 3rem !important;
       }
 
-      &.has-image .tl-text {
-        margin-top: 100vh;
+      .tl-text {
+        margin-top: 90vh;
       }
 
       .image-container {
