@@ -7,12 +7,12 @@
     observer = new IntersectionObserver(entries => {
       entries.forEach(entry => {
         if (entry.intersectionRatio > 0) {
-          document
-            .querySelectorAll(".tl-event-container.is-active")
-            .forEach(ei => ei.classList.remove("is-active"));
+          // document
+          //   .querySelectorAll(".tl-event-container.is-active")
+          //   .forEach(ei => ei.classList.remove("is-active"));
           entry.target.parentNode.classList.add("is-active");
         } else {
-          entry.target.classList.remove("is-active");
+          entry.target.parentNode.classList.remove("is-active");
         }
       });
     });
@@ -46,11 +46,19 @@
     .tl-event-container {
       display: flex;
       flex-direction: column;
-      justify-content: flex-end;
+      justify-content: center;
 
       overflow: hidden;
       height: auto;
       min-height: 100vh;
+
+      &:first-of-type .tl-text {
+        margin-top: 3rem !important;
+      }
+
+      &.has-image .tl-text {
+        margin-top: 100vh;
+      }
 
       .image-container {
         opacity: 0;

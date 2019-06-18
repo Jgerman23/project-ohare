@@ -112,7 +112,7 @@
 
 <div class="timeline-events">
   {#each events as event (event)}
-    <div class="tl-event-container">
+    <div class={`tl-event-container ${event.image ? 'has-image' : ''}`}>
       <div class="tl-text">
         <h3 class="date-heading">{event.Date}</h3>
         <div class="tl-event">
