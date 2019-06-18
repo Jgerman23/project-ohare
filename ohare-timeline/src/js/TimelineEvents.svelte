@@ -1,10 +1,7 @@
 <script>
   import md from "marked";
-  import { groupBy } from "./utils";
 
   export let events;
-
-  $: groupedEvents = groupBy("Date")(events);
 </script>
 
 <style>
@@ -13,7 +10,6 @@
     display: flex;
     align-items: center;
     font-size: 1.2rem;
-    margin-top: 1.5rem;
     font-family: acumin-pro, sans-serif;
   }
 
@@ -51,6 +47,11 @@
     left: var(--timeline-margin);
   }
 
+  .tl-event-container {
+    padding-bottom: 3rem;
+    padding-top: 2rem;
+  }
+
   /* other */
 
   .tag {
@@ -63,9 +64,9 @@
 </style>
 
 <div class="timeline-events">
-  {#each Object.entries(groupedEvents) as [date, events] (date)}
-    <h3 class="date-heading">{date}</h3>
-    {#each events as event (event)}
+  {#each events as event (event)}
+    <div class="tl-event-container">
+      <h3 class="date-heading">{event.Date}</h3>
       <div class="tl-event">
         {@html md(event.Description)}
         {#if event.tags && event.tags.length > 0}
@@ -76,6 +77,6 @@
           </p>
         {/if}
       </div>
-    {/each}
+    </div>
   {/each}
 </div>

@@ -6,7 +6,7 @@
 
 <style>
   .timeline-heading {
-    margin-top: 2.5rem;
+    margin-top: 4rem;
     margin-bottom: 1rem;
   }
 
@@ -15,7 +15,7 @@
   }
 </style>
 
-<div class="timeline">
+<div class="timeline is-scrolly">
   {#each content as contentItem}
     {#if contentItem.type == 'Heading'}
       <h2 class="timeline-heading">

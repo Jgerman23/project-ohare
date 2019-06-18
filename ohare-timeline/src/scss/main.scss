@@ -6,8 +6,6 @@
   max-width: unset;
   @include fit-paragraph;
 
-  margin-bottom: 2rem;
-
   * {
     font-family: $sans;
   }
@@ -47,4 +45,7 @@
     margin-right: 0.5rem;
     transform: rotate(-90deg);
   }
+}
+
+.timeline.is-scrolly {
 }
