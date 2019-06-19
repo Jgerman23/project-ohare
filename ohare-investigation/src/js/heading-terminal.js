@@ -34,6 +34,18 @@ const matchesNext = spaceEl =>
   spaceEl.getBoundingClientRect().top ===
   getNextSibling(spaceEl, 'div').getBoundingClientRect().top;
 
+const getComputedWidth = element => {
+  // we're assuming a reference to your element in a variable called 'element'
+  var style = element.currentStyle || window.getComputedStyle(element),
+    width = element.offsetWidth, // or use style.width
+    margin = parseFloat(style.marginLeft) + parseFloat(style.marginRight),
+    padding = parseFloat(style.paddingLeft) + parseFloat(style.paddingRight),
+    border =
+      parseFloat(style.borderLeftWidth) + parseFloat(style.borderRightWidth);
+
+  return width + margin - padding + border;
+};
+
 export const onResize = function(selector) {
   const headings = document.querySelectorAll(selector);
 
@@ -42,9 +54,11 @@ export const onResize = function(selector) {
   // get width of parent to determine available space
   const parentWidth = headings[0].parentNode.getBoundingClientRect().width;
 
-  // round heading width to multiple of tiles
-  // TODO: use tile style attributes instead of hard-coding
-  const roundedWidth = Math.floor(parentWidth / 30) * 30;
+  // get cell width, including margins
+  const cellWidth = getComputedWidth(headings[0].querySelector('b'));
+
+  // round heading width to multiple of cellWidth
+  const roundedWidth = Math.floor(parentWidth / cellWidth) * cellWidth;
 
   headings.forEach(heading => {
     // set to rounded width
