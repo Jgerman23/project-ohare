@@ -25,11 +25,14 @@
   <article class="main">
     {% include "partials/_header.njk" %}
 
+  <section class="story">
+    <p>{{ ARCHIE.top.leadin }}</p>
+    <hr>
+
     <div id="svelte-app"></div>
 
-    {# {% include "partials/_story.njk" %} #}
-
-    {# {% include "partials/_credits.njk" %} #}
+    <hr>
+    <p class="sources sans">Sources: {{ ARCHIE.sources }}</p>
   </article>
 
   {% include "partials/_footer.njk" %}

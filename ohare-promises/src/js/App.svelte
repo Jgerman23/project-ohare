@@ -13,12 +13,8 @@
   }
 </style>
 
-<section class="story">
-  <p class="align-center">{Dummy.text(60)}</p>
-  <hr />
-  <Inner projects={terminal} title="Intl Terminal" />
-  <hr />
-  <Inner projects={peopleMover} title="People Mover" />
-  <hr />
-  <Inner projects={runways} title="Runways" />
-</section>
+<Inner projects={terminal} title="Intl Terminal" />
+<hr />
+<Inner projects={peopleMover} title="People Mover" />
+<hr />
+<Inner projects={runways} title="Runways" />

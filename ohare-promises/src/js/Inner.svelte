@@ -6,9 +6,11 @@
   // because of how we had to structure the archie document
   projects.forEach(d => {
     d.delivered = d.delivered[0];
-    d.delivered.title = "Delivered";
+    d.delivered.title =
+      d.delivered.title !== undefined ? d.delivered.title : "Delivered";
     d.promised = d.promised[0];
-    d.promised.title = "Promised";
+    d.promised.title =
+      d.promised.title !== undefined ? d.promised.title : "Promised";
   });
 </script>
 
@@ -53,6 +55,7 @@
     margin-bottom: 3rem;
   }
 
+  thead th,
   tr[data-name="date"] td,
   tr[data-name="cost"] td {
     text-align: center;
@@ -69,23 +72,39 @@
       <table lang="en-us">
         <thead>
           <th />
-          <th>{promised.title}</th>
-          <th>{delivered.title}</th>
+          <th>
+            {@html promised.title}
+          </th>
+          <th>
+            {@html delivered.title}
+          </th>
         </thead>
         <tr data-name="date">
           <td>Date</td>
-          <td>{promised.date}</td>
-          <td>{delivered.date}</td>
+          <td>
+            {@html promised.date}
+          </td>
+          <td>
+            {@html delivered.date}
+          </td>
         </tr>
         <tr data-name="cost">
           <td>Cost</td>
-          <td>{promised.cost}</td>
-          <td>{delivered.cost}</td>
+          <td>
+            {@html promised.cost}
+          </td>
+          <td>
+            {@html delivered.cost}
+          </td>
         </tr>
         <tr data-name="description">
           <td>Description</td>
-          <td>{promised.description}</td>
-          <td>{delivered.description}</td>
+          <td>
+            {@html promised.description}
+          </td>
+          <td>
+            {@html delivered.description}
+          </td>
         </tr>
       </table>
 
