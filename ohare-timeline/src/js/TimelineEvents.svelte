@@ -47,6 +47,7 @@
     width: 2px;
     left: 0;
     left: var(--timeline-margin);
+    z-index: 9;
   }
 
   .tl-event-container {
@@ -113,6 +114,18 @@
 <div class="timeline-events">
   {#each events as event (event)}
     <div class="tl-event-container">
+      {#if event.image}
+        <div class="image-container">
+          <div class="image-container-inner">
+            <figure class={event.image.class}>
+              <img
+                data-src={'images/' + event.image.src}
+                alt={event.image.alt} />
+              <figcaption class="sans">{event.image.cutline}</figcaption>
+            </figure>
+          </div>
+        </div>
+      {/if}
       <div class="tl-text">
         <h3 class="date-heading">{event.Date}</h3>
         <div class="tl-event">
@@ -126,16 +139,6 @@
           {/if}
         </div>
       </div>
-      {#if event.image}
-        <div class="image-container">
-          <div class="image-container-inner">
-            <figure class={event.image.class}>
-              <img src={'images/' + event.image.src} alt={event.image.alt} />
-              <figcaption class="sans">{event.image.cutline}</figcaption>
-            </figure>
-          </div>
-        </div>
-      {/if}
     </div>
   {/each}
 </div>
