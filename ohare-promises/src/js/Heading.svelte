@@ -47,6 +47,7 @@
 
     .spacer {
       flex-grow: 1;
+      min-width: calc(var(--c-width) + var(--c-spacing));
 
       background: repeating-linear-gradient(
         to right,
@@ -64,7 +65,7 @@
 
     > div > b {
       background: var(--c-background);
-      font-size: 2rem;
+      font-size: var(--c-width);
       font-weight: 100;
       line-height: 1.4;
       margin-right: var(--c-spacing);

@@ -24,3 +24,46 @@ th {
 .story > hr {
   @include align-center;
 }
+
+@include media('<phone') {
+  table tr,
+  table td {
+    display: block;
+    padding: 0.5rem 0 !important;
+    text-align: left !important;
+    white-space: normal;
+    hyphens: unset !important;
+  }
+
+  table td:first-child {
+    font-weight: bold;
+    // text-transform: uppercase;
+    // font-style: italic;
+    width: 100% !important;
+    // letter-spacing: 0.1rem;
+    border-bottom: 1px solid ivory;
+  }
+
+  table td[data-title]:before {
+    content: attr(data-title) ':\00A0';
+    font-weight: bold;
+  }
+
+  tr[data-name='date'] td,
+  tr[data-name='cost'] td {
+    display: flex;
+    justify-content: space-between;
+    // text-align: right !important;
+  }
+
+  table th,
+  table td:empty {
+    display: none !important;
+  }
+}
+
+.project-heading {
+  @include media('>=tablet') {
+    --c-width: 40px !important;
+  }
+}

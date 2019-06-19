@@ -41,7 +41,7 @@
 
   td:first-child,
   th:first-child {
-    width: 11.05ch; /* width of "Description" */
+    width: 11.25ch; /* width of "Completion" */
     text-align: left !important;
   }
 
@@ -80,29 +80,29 @@
           </th>
         </thead>
         <tr data-name="date">
-          <td>Date</td>
-          <td>
+          <td>Completion</td>
+          <td data-title={promised.title}>
             {@html promised.date}
           </td>
-          <td>
+          <td data-title={delivered.title}>
             {@html delivered.date}
           </td>
         </tr>
         <tr data-name="cost">
           <td>Cost</td>
-          <td>
+          <td data-title={promised.title}>
             {@html promised.cost}
           </td>
-          <td>
+          <td data-title={delivered.title}>
             {@html delivered.cost}
           </td>
         </tr>
         <tr data-name="description">
           <td>Description</td>
-          <td>
+          <td data-title={promised.title}>
             {@html promised.description}
           </td>
-          <td>
+          <td data-title={delivered.title}>
             {@html delivered.description}
           </td>
         </tr>
