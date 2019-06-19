@@ -3,10 +3,14 @@
   import Inner from "./Inner.svelte";
 
   const { terminal, peopleMover, runways } = archie.projects;
+  const { images } = archie;
 </script>
 
-<Inner projects={terminal} title="Intl Terminal" />
+<Inner projects={terminal} title="Intl Terminal" banner={images.terminal} />
 
-<Inner projects={peopleMover} title="People Mover" />
+<Inner
+  projects={peopleMover}
+  title="People Mover"
+  banner={images.peopleMover} />
 
-<Inner projects={runways} title="Runways" />
+<Inner projects={runways} title="Runways" banner={images.runways} />

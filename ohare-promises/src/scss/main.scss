@@ -79,3 +79,22 @@ thead {
     --c-width: 40px !important;
   }
 }
+
+.project-image {
+  @include full-width;
+
+  margin-top: 1rem !important;
+  margin-bottom: 1rem !important;
+
+  img {
+    min-height: 300px;
+    height: auto;
+    max-height: 600px;
+    object-fit: cover;
+  }
+
+  figcaption {
+    @include fit-inner;
+    text-align: right;
+  }
+}

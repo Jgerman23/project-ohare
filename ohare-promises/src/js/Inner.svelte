@@ -1,7 +1,7 @@
 <script>
   import Heading from "./Heading.svelte";
   import Dummy from "dummyjs";
-  export let projects, title;
+  export let projects, title, banner;
 
   // because of how we had to structure the archie document
   projects.forEach(d => {
@@ -63,18 +63,21 @@
 
   .projects-container {
     margin-top: 5rem;
+    margin-bottom: 10rem;
   }
 
-  .project-individual {
-    margin: 5rem 0;
+  .projects-container > * {
+    // margin-top: 5rem;
+    margin-bottom: 5rem;
   }
 </style>
 
 <div class="projects-container">
+
   <Heading {title} />
 
-  <figure>
-    <img src="https://via.placeholder.com/800x450" alt="" />
+  <figure class="photo project-image">
+    <img src={banner} alt="" />
     <figcaption class="caption">{Dummy.text(10)}</figcaption>
   </figure>
 
