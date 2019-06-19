@@ -1,4 +1,4 @@
-$table_border_dark: ivory;
+$table_border_dark: transparentize(ivory, 0.3);
 
 @import '~ohare-investigation/src/scss/main';
 
@@ -10,14 +10,29 @@ th {
   text-align: center;
 }
 
+thead {
+  border-bottom-color: $table_border_dark !important;
+}
+
 .date-heading {
-  border-bottom: solid 4px $accent;
-  color: $accent;
+  // border-bottom: solid 4px $accent;
+  // color: $accent;
+  color: $primary-text-color;
   padding-bottom: 0.5rem;
   margin-top: 3rem;
   margin-bottom: 1rem;
   font-family: $sans;
-  font-size: 1.5rem;
+  font-size: 1.3rem;
+
+  &::before {
+    // color: dimgray;
+    // opacity: 0.8;
+    color: transparentize($primary-text-color, 0.3) !important;
+  }
+
+  @include media('>=tablet') {
+    font-size: 1.5rem;
+  }
 }
 
 .story > p,
@@ -37,10 +52,7 @@ th {
 
   table td:first-child {
     font-weight: bold;
-    // text-transform: uppercase;
-    // font-style: italic;
     width: 100% !important;
-    // letter-spacing: 0.1rem;
     border-bottom: 1px solid ivory;
   }
 

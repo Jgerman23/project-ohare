@@ -1,6 +1,6 @@
 <script>
   import Heading from "./Heading.svelte";
-
+  import Dummy from "dummyjs";
   export let projects, title;
 
   // because of how we had to structure the archie document
@@ -60,10 +60,23 @@
   tr[data-name="cost"] td {
     text-align: center;
   }
+
+  .projects-container {
+    margin-top: 5rem;
+  }
+
+  .project-individual {
+    margin: 5rem 0;
+  }
 </style>
 
 <div class="projects-container">
   <Heading {title} />
+
+  <figure>
+    <img src="https://via.placeholder.com/800x450" alt="" />
+    <figcaption class="caption">{Dummy.text(10)}</figcaption>
+  </figure>
 
   {#each projects as { date, description, promised, delivered }}
     <div class="project-individual">
