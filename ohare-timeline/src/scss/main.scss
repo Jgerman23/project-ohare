@@ -54,6 +54,21 @@
   margin-left: auto;
   margin-right: auto;
 
+  figure {
+    max-height: 90vh;
+    width: 100%;
+    // overflow: hidden;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+  }
+
+  img {
+    object-fit: contain;
+    max-height: 100%;
+  }
+
   @include media('>=desktop') {
     width: calc(#{$desktop-max-content-width} + 10rem);
   }
@@ -125,4 +140,8 @@ nav.global .share-menu {
 
 .timeline.hide-all-images .image-container {
   opacity: 0 !important;
+}
+
+.intro {
+  padding-bottom: 0;
 }
