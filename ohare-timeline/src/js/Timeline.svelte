@@ -36,8 +36,11 @@
 </script>
 
 <script>
-  import Switch from "./Switch";
-  import Button from "./Button";
+  export let content = [];
+
+  import Button from "./components/controls/Button";
+  import Switch from "./components/controls/Switch";
+  import TimelineEvents from "./components/events";
 
   let currentSlide, currentIndex;
 
@@ -52,9 +55,6 @@
   import { onDestroy } from "svelte";
 
   onDestroy(unsubscribe);
-
-  import TimelineEvents from "./TimelineEvents.svelte";
-  export let content = [];
 
   const onClickPrev = () => {
     const prevEl = allContainers.item(currentIndex - 1);
@@ -80,10 +80,6 @@
 </script>
 
 <style lang="scss">
-  :global(p:last-of-type) {
-    margin-bottom: 0;
-  }
-
   :global(.timeline.is-scrolly) {
     .tl-event-container {
       display: flex;
@@ -115,19 +111,6 @@
         pointer-events: all;
       }
     }
-  }
-
-  :global(.image-container) {
-    position: fixed;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-
-    pointer-events: none;
-
-    display: flex;
-    align-items: center;
   }
 
   .controls {

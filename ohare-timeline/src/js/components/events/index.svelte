@@ -1,4 +1,5 @@
 <script>
+  import EventImage from "./EventImage";
   import md from "marked";
 
   export let events;
@@ -55,59 +56,18 @@
     padding-top: 2rem;
   }
 
-  /* other */
-
-  .tag {
-    color: white;
-    font-size: 0.9rem;
-    padding: 0.3rem 0.25rem 0.2rem;
-    margin-right: 0.5rem;
-    text-transform: uppercase;
+  .tl-event {
+    float: unset;
+    margin-left: unset;
+    max-width: unset;
   }
 
-  img {
-    filter: invert(100%) brightness(0.85);
-  }
-
-  figure {
-    max-width: 100%;
-  }
-
-  figure.medium {
-    width: 20rem;
-  }
-
-  figure.large {
-    width: 40rem;
-  }
-
-  figcaption {
-    text-align: right;
-    text-transform: uppercase;
-    font-weight: normal;
-    letter-spacing: 0.1rem;
-  }
-
-  :global(.is-scrolly) .image-container {
-    position: fixed;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    z-index: 1;
-
-    pointer-events: none;
-
-    display: flex;
-    align-items: center;
-
-    .image-container-inner {
-      position: relative;
-    }
-
-    figure.align-right {
-      float: right;
-    }
+  .tl-event::before {
+    content: "";
+    display: block;
+    width: 4rem;
+    height: 4px;
+    margin-bottom: 0.5rem;
   }
 </style>
 
@@ -115,21 +75,15 @@
   {#each events as event (event)}
     <div class="tl-event-container">
       {#if event.image}
-        <div class="image-container">
-          <div class="image-container-inner">
-            <figure class={event.image.class}>
-              <img
-                data-src={'images/' + event.image.src}
-                alt={event.image.alt} />
-              <figcaption class="sans">{event.image.cutline}</figcaption>
-            </figure>
-          </div>
-        </div>
+        <EventImage {...event.image} />
       {/if}
       <div class="tl-text">
         <h3 class="date-heading">{event.Date}</h3>
         <div class="tl-event">
           {@html md(event.Description)}
+          {#if event.image}
+            <p>({event.image.cutline})</p>
+          {/if}
         </div>
       </div>
     </div>
