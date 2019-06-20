@@ -76,10 +76,12 @@
 
   <Heading {title} />
 
-  <figure class="photo project-image">
-    <img src={banner} alt="" />
-    <figcaption class="caption">{Dummy.text(10)}</figcaption>
-  </figure>
+  {#if banner}
+    <figure class="photo project-image">
+      <img src={banner} alt="" />
+      <figcaption class="caption">{Dummy.text(10)}</figcaption>
+    </figure>
+  {/if}
 
   {#each projects as { date, description, promised, delivered }}
     <div class="project-individual">

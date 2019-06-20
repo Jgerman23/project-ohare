@@ -6,7 +6,7 @@
   const { images } = archie;
 </script>
 
-<Inner projects={terminal} title="Intl Terminal" banner={images.terminal} />
+<Inner projects={terminal} title="Intl Terminal" />
 
 <Inner
   projects={peopleMover}

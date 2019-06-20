@@ -98,3 +98,17 @@ thead {
     text-align: right;
   }
 }
+
+nav.global {
+  position: static !important;
+}
+
+nav.global .icon--bga-logo,
+nav.global .share {
+  color: ivory !important;
+
+  &:hover,
+  &:focus {
+    color: transparentize(ivory, 0.2) !important;
+  }
+}
