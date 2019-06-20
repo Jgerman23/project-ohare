@@ -130,13 +130,6 @@
         <h3 class="date-heading">{event.Date}</h3>
         <div class="tl-event">
           {@html md(event.Description)}
-          {#if event.tags && event.tags.length > 0}
-            <p class="tags">
-              {#each event.tags as tag}
-                <span class="tag">{tag.value}</span>
-              {/each}
-            </p>
-          {/if}
         </div>
       </div>
     </div>

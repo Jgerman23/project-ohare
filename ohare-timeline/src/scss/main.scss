@@ -31,24 +31,7 @@
   top: 1rem;
 }
 
-.timeline-heading {
-  border-bottom: solid 4px $accent;
-  color: $accent;
-  padding-bottom: 0.5rem;
-  padding-top: 3rem;
-  margin-top: 0;
-  margin-bottom: 1rem;
-  font-family: $sans;
-  font-size: 2rem;
-
-  .fa-plane {
-    margin-right: 0.5rem;
-    transform: rotate(-90deg);
-  }
-}
-
 .image-container-inner {
-  // @include fit-inner;
   width: calc(100vw - 2rem);
   max-width: calc(100vw - 2rem);
   margin-left: auto;
@@ -57,7 +40,6 @@
   figure {
     max-height: 90vh;
     width: 100%;
-    // overflow: hidden;
     height: 100vh;
     display: flex;
     justify-content: center;
@@ -82,14 +64,10 @@
 }
 
 .image-container {
-  // background: azure;
   z-index: -2;
-  // pointer-events: none;
 }
 
-section.story,
-.timeline-heading {
-  // background: $page-background;
+section.story {
   position: relative;
   z-index: 2;
 }
@@ -103,8 +81,7 @@ section.timeline-container {
 }
 
 .intro,
-.story,
-.timeline-heading {
+.story {
   background: $page-background;
   position: relative;
   z-index: 2;
@@ -112,8 +89,17 @@ section.timeline-container {
   margin-bottom: 0;
 }
 
-.image-container {
-  // background: $page-background;
+.intro::after {
+  content: '';
+  @include full-width;
+
+  display: block;
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  background: $page-background;
+  z-index: -1;
 }
 
 nav.global .share-menu {
@@ -130,6 +116,7 @@ nav.global .share-menu {
 
 .intro {
   padding-bottom: 0;
+  margin-bottom: 3rem;
 }
 
 button {

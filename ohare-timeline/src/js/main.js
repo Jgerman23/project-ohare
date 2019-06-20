@@ -1,7 +1,6 @@
 import '../scss/main.scss';
 import 'ohare-investigation/src/js/main';
-// import Timeline from './Timeline.svelte';
-import Timeline from './TimelineScrolly.svelte';
+import Timeline from './Timeline.svelte';
 import ARCHIE from '../data/archie.json';
 
 const mode = process.env.NODE_ENV || 'development';
