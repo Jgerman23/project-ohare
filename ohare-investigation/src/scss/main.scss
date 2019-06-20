@@ -19,16 +19,22 @@ body {
 }
 
 nav.global {
+  background: transparent;
   border-bottom: none;
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  z-index: 3;
 }
 
 nav.global .icon--bga-logo,
 nav.global .share {
-  color: ivory;
+  // color: ivory;
 
   &:hover,
   &:focus {
-    color: transparentize(ivory, 0.2);
+    // color: transparentize(currentColor, 0.2);
   }
 }
 
@@ -56,7 +62,8 @@ nav.global .share {
   }
 
   $c-spacing: 0.2em;
-  $c-background: transparentize(gray, 0.8);
+  // $c-background: transparentize(gray, 0.8);
+  $c-background: #2a2a2a;
 
   color: $accent;
   font-family: led-calculator, $sans;
@@ -125,4 +132,17 @@ nav.global .share {
 
 .u-w0 {
   width: 0;
+}
+
+.header--heroic .lede-image img {
+  max-height: 100vh;
+  object-fit: cover;
+  min-height: 30vh;
+  object-position: 30% 50%;
+}
+
+.header--heroic .dek,
+.header--heroic .bylines {
+  text-align: left;
+  color: #2a2a2a;
 }

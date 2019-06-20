@@ -2,31 +2,34 @@
 
 <section class="intro">
 
-  <header class="header--center">
+  <header class="header--center header--heroic header--drop-mobile">
 
-    <!-- <figure class="lede-image">
-      {{ jpg(ARCHIE.top.hero.source) }}
-      {# <img src="https://via.placeholder.com/800x450" /> #}
+    <figure class="lede-image">
+      {# {{ jpg(ARCHIE.top.hero.source) }} #}
+      <img src="images/natural_yellow.jpg" />
       
       <figcaption class="caption">
-        <span class="cutline">{{ ARCHIE.top.hero.cutline }}</span>
-        {# <span class="cutline">Sample photographer | DNE</span> #}
+        {# <span class="cutline">{{ ARCHIE.top.hero.cutline }}</span> #}
+        <span class="cutline">iStock</span>
       </figcaption>
-    </figure> -->
+    </figure>
     
     <div class="lede-copy">
       <h1 class="hed heading-terminal">
         {{- ARCHIE.top.headline -}}
       </h1>
-      <div class="dek">
-        {{- ARCHIE.top.deck -}}
-      </div>
-      <div class="bylines">
-        {{- ARCHIE.top.byline | safe -}}
-      </div>
     </div>
   
   </header>
+
+
+  <div class="dek">
+    {{- ARCHIE.top.deck -}}
+  </div>
+  
+  <div class="bylines">
+    {{- ARCHIE.top.byline | safe -}}
+  </div>
 
   <hr>
   

@@ -77,7 +77,7 @@ export const onResize = function(selector) {
       // -- else if aligned with next only, make the tile invisible *and* set
       //    its width to 0
       if (prev && next) {
-        spaceEl.classList.remove('u-invisible');
+        spaceEl.classList.remove('u-invisible', 'u-w0');
       } else if (prev) {
         spaceEl.classList.add('u-invisible');
       } else if (next) {
