@@ -78,8 +78,11 @@
 
   {#if banner}
     <figure class="photo project-image">
-      <img src={banner} alt="" />
-      <figcaption class="caption">{Dummy.text(10)}</figcaption>
+      <img src={banner.src} alt="" />
+      <figcaption class="caption">
+        <span class="caption-text">{banner.caption}</span>
+        <span class="cutline">{banner.cutline}</span>
+      </figcaption>
     </figure>
   {/if}
 

@@ -24,8 +24,8 @@ module.exports = {
     var buffer = readChunk.sync(shareImagePath, 0, 12);
 
     const contextMeta = getMeta({
-      title: contextData.COPY.seo_headline,
-      description: contextData.COPY.subhed,
+      title: contextArchie.share.cardTitle,
+      description: contextArchie.share.cardDescription,
       updatedProps: {
         share: {
           image: {

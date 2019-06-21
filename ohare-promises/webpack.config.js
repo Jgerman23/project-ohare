@@ -3,6 +3,7 @@ const webpack = require('webpack');
 const merge = require('webpack-merge');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CopyPlugin = require('copy-webpack-plugin');
+const ImageminPlugin = require('imagemin-webpack-plugin').default;
 const sharp = require('sharp');
 
 const mode = process.env.NODE_ENV || 'development';
@@ -85,9 +86,16 @@ let webpackConfig = {
       {
         from: 'src/static',
         to: ''
-      },
-      ...responsiveImages([400, 800, 1200, 1800])
+      }
+      // ...responsiveImages([400, 800, 1200, 1800])
     ]),
+    new ImageminPlugin({
+      test: /\.(jpe?g|png|gif|svg)$/i,
+      disable: prod ? false : true,
+      jpegtran: {
+        progressive: true
+      }
+    }),
     new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/) // ignore moment locales
   ],
   devtool: prod ? false : 'inline-cheap-source-map',
@@ -114,7 +122,7 @@ prodConfig = {
   plugins: [
     new PurgeCssPlugin({
       paths: glob.sync(`${PATHS.src}/**/*`, { nodir: true }),
-      whitelistPatterns: [/^svelte-/]
+      whitelistPatterns: [/^svelte-/, /^u-/]
     }),
     new PrerenderSPAPlugin({
       staticDir: path.join(__dirname, 'public'),
