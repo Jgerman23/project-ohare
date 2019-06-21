@@ -65,6 +65,7 @@ let webpackConfig = {
       }
     ]),
     new ImageminPlugin({
+      disable: prod ? false : true,
       test: /\.(jpe?g|png|gif|svg)$/i,
       pngquant: {
         quality: '90-95'
@@ -96,7 +97,7 @@ prodConfig = {
   plugins: [
     new PurgeCssPlugin({
       paths: glob.sync(`${PATHS.src}/**/*`, { nodir: true }),
-      whitelistPatterns: [/^svelte-/]
+      whitelistPatterns: [/^svelte-/, /^u-/]
     }),
     new PrerenderSPAPlugin({
       staticDir: path.join(__dirname, 'public'),
