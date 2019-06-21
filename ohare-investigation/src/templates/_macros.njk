@@ -59,7 +59,7 @@
 <figure id="{{art.slug}}" class="{{ getArtClasses(art) }}">
 
   {% if art.type == "pym" %}
-    <div data-pym-src="{{art.source}}"></div>
+    <div data-pym-src="{{art.source}}" data-pym-loader></div>
   {% elif art.type == "photo" %}
     {% set regExp = r/^https?:\/\/.+$/ %}
     
