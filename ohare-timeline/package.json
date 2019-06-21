@@ -29,20 +29,24 @@
     "html-loader": "^0.5.5",
     "html-webpack-plugin": "^3.2.0",
     "http-server": "^0.11.1",
+    "image-size": "^0.7.4",
+    "image-type": "^4.1.0",
+    "lodash.merge": "^4.6.1",
     "marked": "^0.6.2",
     "mini-css-extract-plugin": "^0.6.0",
     "node-sass": "^4.12.0",
     "nodemon": "^1.19.1",
     "nunjucks": "^3.2.0",
     "nunjucks-webpack-plugin": "^5.0.0",
-    "ohare-investigation": "file:/Users/pjudge/bettergov/projects/ohare-investigation",
     "open": "^6.3.0",
     "optimize-css-assets-webpack-plugin": "^5.0.1",
     "postcss-loader": "^3.0.0",
     "prerender-spa-plugin": "^3.4.0",
     "purgecss-webpack-plugin": "^1.5.0",
+    "read-chunk": "^3.2.0",
     "sass-loader": "^7.1.0",
     "serve": "^11.0.0",
+    "sharp": "^0.22.1",
     "style-loader": "^0.23.1",
     "svelte": "^3.0.0",
     "svelte-loader": "2.13.3",
@@ -54,9 +58,15 @@
     "webpack-merge": "^4.2.1",
     "webpack-node-externals": "^1.7.2"
   },
+  "dependencies": {
+    "lazysizes": "^5.1.0",
+    "ohare-investigation": "file:../ohare-investigation"
+  },
   "scripts": {
     "build": "cross-env NODE_ENV=production webpack",
-    "dev": "nodemon --watch webpack.config.js --watch config --exec 'webpack-dev-server --content-base src/static'",
-    "preview": "yarn build && http-server -p 3000 public"
+    "dev": "nodemon --watch webpack.config.js --watch config --exec webpack-dev-server",
+    "preview": "yarn build && http-server -p 3000 public -o",
+    "full-deploy": "gulp archie && yarn build && gulp aws --force",
+    "full-deploy:prod": "gulp archie && yarn build && gulp aws --force --production"
   }
 }
