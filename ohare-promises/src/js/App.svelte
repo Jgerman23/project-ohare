@@ -10,7 +10,7 @@
 
 <Inner
   projects={peopleMover}
-  title="People Mover"
+  title="People Movers"
   banner={images.peopleMover} />
 
 <Inner projects={runways} title="Runways" banner={images.runways} />
