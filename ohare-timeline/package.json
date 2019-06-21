@@ -31,6 +31,7 @@
     "http-server": "^0.11.1",
     "image-size": "^0.7.4",
     "image-type": "^4.1.0",
+    "imagemin-webpack-plugin": "^2.4.2",
     "lodash.merge": "^4.6.1",
     "marked": "^0.6.2",
     "mini-css-extract-plugin": "^0.6.0",

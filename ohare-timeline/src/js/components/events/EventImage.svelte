@@ -57,7 +57,7 @@
 <div class="image-container">
   <div class="image-container-inner">
     <figure class={styles}>
-      <img data-src={'images/' + src} {alt} />
+      <img class="lazyload" data-src={'images/' + src} {alt} />
     </figure>
   </div>
 </div>

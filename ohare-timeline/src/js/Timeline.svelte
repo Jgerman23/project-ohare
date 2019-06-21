@@ -15,10 +15,6 @@
     const eventItemObserver = new IntersectionObserver(entries => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
-          // lazyload image
-          const image = entry.target.parentNode.querySelector("img[data-src]");
-          if (showScrolly && image) image.src = image.dataset.src;
-
           entry.target.parentNode.classList.add("is-active");
           slide.set(entry.target.parentNode);
         } else {

@@ -3,33 +3,10 @@ const webpack = require('webpack');
 const merge = require('webpack-merge');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CopyPlugin = require('copy-webpack-plugin');
-const sharp = require('sharp');
+const ImageminPlugin = require('imagemin-webpack-plugin').default;
 
 const mode = process.env.NODE_ENV || 'development';
 const prod = mode === 'production';
-
-const responsiveImages = (widths, opts = {}) => {
-  const minWidth = opts.minWidth || 800;
-
-  return widths.map(width => {
-    let newWidth = Math.max(width, minWidth);
-
-    return {
-      from: 'src/static/images',
-      to: 'images',
-      transform: content =>
-        sharp(content)
-          .resize(newWidth)
-          .toBuffer(),
-      transformPath(targetPath, absolutePath) {
-        var arrPath = targetPath.split('.');
-        var ext = arrPath.pop();
-        var path = arrPath.join('.');
-        return `${path}-${width}.${ext}`;
-      }
-    };
-  });
-};
 
 let webpackConfig = {
   entry: {
@@ -85,9 +62,14 @@ let webpackConfig = {
       {
         from: 'src/static',
         to: ''
-      },
-      ...responsiveImages([400, 800, 1200, 1800])
+      }
     ]),
+    new ImageminPlugin({
+      test: /\.(jpe?g|png|gif|svg)$/i,
+      pngquant: {
+        quality: '90-95'
+      }
+    }),
     new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/) // ignore moment locales
   ],
   devtool: prod ? false : 'inline-cheap-source-map',

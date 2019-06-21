@@ -3,6 +3,11 @@ import 'ohare-investigation/src/js/main';
 import Timeline from './Timeline.svelte';
 import ARCHIE from '../data/archie.json';
 
+// initialize image lazyload using lazysizes
+// https://github.com/aFarkas/lazysizes
+import lazySizes from 'lazysizes';
+import 'lazysizes/plugins/blur-up/ls.blur-up';
+
 const mode = process.env.NODE_ENV || 'development';
 const prod = mode === 'production';
 
