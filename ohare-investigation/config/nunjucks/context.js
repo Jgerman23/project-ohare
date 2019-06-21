@@ -14,28 +14,28 @@ module.exports = {
       path.resolve(process.cwd(), 'src/data/data.json')
     );
 
-    // var shareImageUrl = 'social-card.jpg';
-    // var shareImagePath = path.resolve(
-    //   process.cwd(),
-    //   'src/static/',
-    //   shareImageUrl
-    // );
-    // var dimensions = sizeOf(shareImagePath);
-    // var buffer = readChunk.sync(shareImagePath, 0, 12);
+    var shareImageUrl = 'ohare_natural_yellow.jpg';
+    var shareImagePath = path.resolve(
+      process.cwd(),
+      'src/static/',
+      shareImageUrl
+    );
+    var dimensions = sizeOf(shareImagePath);
+    var buffer = readChunk.sync(shareImagePath, 0, 12);
 
     const contextMeta = getMeta({
-      // title: contextData.COPY.seo_headline,
-      // description: contextData.COPY.subhed,
-      // updatedProps: {
-      //   share: {
-      //     image: {
-      //       url: shareImageUrl,
-      //       width: dimensions.width,
-      //       height: dimensions.height,
-      //       type: imageType(buffer).mime
-      //     }
-      //   }
-      // }
+      title: contextArchie.share.card_title,
+      description: contextArchie.share.card_description,
+      updatedProps: {
+        share: {
+          image: {
+            url: shareImageUrl,
+            width: dimensions.width,
+            height: dimensions.height,
+            type: imageType(buffer).mime
+          }
+        }
+      }
     });
 
     const templateContext = {

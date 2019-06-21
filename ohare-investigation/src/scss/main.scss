@@ -10,6 +10,7 @@ $accent: saturate(DarkKhaki, 30%);
 
 @import '~bga-style/scss/webpack';
 @import './art';
+@import './lazyload';
 
 $dropcap-background: transparentize(gray, 0.8);
 $page-background: darken(DimGray, 30%);
