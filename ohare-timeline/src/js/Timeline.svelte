@@ -86,13 +86,8 @@
       flex-direction: column;
       justify-content: center;
 
-      overflow: hidden;
       height: auto;
       min-height: 100vh;
-
-      &:first-of-type .tl-text {
-        margin-top: 3rem !important;
-      }
 
       .tl-text {
         margin-top: 90vh;
