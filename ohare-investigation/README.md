@@ -6,12 +6,12 @@
 
 ## About
 
-| Title       | O&#39;Hare investigation                                                                                                                   |
-| ----------- | ----------------------------------------------------------------------------------------------------------------------------------- |
-| Developer   | [Patrick Judge](pjudge@bettergov.org)                                                                                               |
-| Link        | [https://projects.bettergov.org/2019/ohare-investigation/](https://projects.bettergov.org/2019/ohare-investigation/)                          |
-| Archie doc  | [1zBl8_RS-KnDAse52ShBAYNrNJTins8dDn6wfHSyD3K4](https://docs.google.com/document/d/1zBl8_RS-KnDAse52ShBAYNrNJTins8dDn6wfHSyD3K4/edit)           |
-| Spreadsheet | n/a |
+| Title       | O&#39;Hare investigation                                                                                                             |
+| ----------- | ------------------------------------------------------------------------------------------------------------------------------------ |
+| Developer   | [Patrick Judge](pjudge@bettergov.org)                                                                                                |
+| Link        | [https://projects.bettergov.org/2019/ohare-investigation/](https://projects.bettergov.org/2019/ohare-investigation/)                 |
+| Archie doc  | [1k_TCcVdwawniXem88D58mm3tFbwtXLDiDdgTpuKx6Ss](https://docs.google.com/document/d/1k_TCcVdwawniXem88D58mm3tFbwtXLDiDdgTpuKx6Ss/edit) |
+| Spreadsheet | n/a                                                                                                                                  |
 
 © Better Government Association 2019
 
