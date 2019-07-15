@@ -160,6 +160,15 @@ nav.global .share {
 }
 
 @media print {
+  html {
+    font-size: 12pt;
+  }
+
+  body {
+    background: white;
+    color: #1a1a1a;
+  }
+
   nav.global,
   footer.nav-bottom {
     display: none;
