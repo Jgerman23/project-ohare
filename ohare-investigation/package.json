@@ -2,8 +2,8 @@
   "name": "ohare-investigation",
   "version": "1.0.0",
   "devDependencies": {
-    "@babel/core": "^7.4.5",
-    "@babel/preset-env": "^7.4.5",
+    "@babel/core": "^7.5.4",
+    "@babel/preset-env": "^7.5.4",
     "@newswire/doc-to-archieml": "^1.0.0",
     "@newswire/sheet-to-data": "^1.0.0",
     "autoprefixer": "^9.6.0",

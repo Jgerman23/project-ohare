@@ -72,6 +72,16 @@ let webpackConfig = {
       {
         test: /\.(png|jpg|jpeg|gif|svg|woff|woff2|ttf|eot)$/,
         use: 'file-loader'
+      },
+      {
+        test: /\.js$/,
+        exclude: /node_modules/,
+        use: {
+          loader: 'babel-loader',
+          options: {
+            presets: ['@babel/preset-env']
+          }
+        }
       }
     ]
   },
