@@ -134,6 +134,10 @@ nav.global .share {
   margin-bottom: 1rem;
 }
 
+.u-hidden {
+  display: none;
+}
+
 .u-invisible {
   visibility: hidden;
 }
@@ -153,4 +157,23 @@ nav.global .share {
 .header--heroic .bylines {
   text-align: left;
   color: #2a2a2a;
+}
+
+@media print {
+  nav.global,
+  footer.nav-bottom {
+    display: none;
+  }
+
+  .heading-terminal.block-heading,
+  .lede-image {
+    display: none;
+  }
+
+  header,
+  .heading-terminal:not(.block-heading),
+  .lede-copy {
+    display: block !important;
+    position: static !important;
+  }
 }

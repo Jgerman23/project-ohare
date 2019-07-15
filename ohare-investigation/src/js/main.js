@@ -8,6 +8,20 @@ import 'lazysizes/plugins/blur-up/ls.blur-up';
 
 import HeadingTerminal from './heading-terminal';
 
+let pymParents;
+let heading;
+
 document.addEventListener('DOMContentLoaded', function() {
-  new HeadingTerminal('.heading-terminal');
+  heading = new HeadingTerminal('.heading-terminal');
+});
+
+window.addEventListener('load', function() {
+  pymParents = window.pym.autoInitInstances;
+});
+
+window.addEventListener('beforeprint', function() {
+  // send new print width for pym embeds
+  pymParents.forEach(pymParent => {
+    pymParent.sendWidth();
+  });
 });
