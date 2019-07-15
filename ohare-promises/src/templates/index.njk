@@ -25,13 +25,14 @@
   <article class="main">
     {% include "partials/_header.njk" %}
 
-  <section class="story">
-    <p>{{ ARCHIE.top.leadin }}</p>
+    <section class="story">
+      <p>{{ ARCHIE.top.leadin }}</p>
 
-    <div id="svelte-app"></div>
+      <div id="svelte-app"></div>
 
-    <hr>
-    <p class="sources sans">Sources: {{ ARCHIE.sources }}</p>
+      <hr>
+      <p class="sources sans">Sources: {{ ARCHIE.sources }}</p>
+    </section>
   </article>
 
   {% include "partials/_footer.njk" %}
@@ -49,5 +50,4 @@
 
 {% block js %}
 <script src="bundle.{{__webpack__.hash}}.js"></script>
-{# <script type="text/javascript" src="https://pym.nprapps.org/pym.v1.min.js"></script> #}
 {% endblock %}

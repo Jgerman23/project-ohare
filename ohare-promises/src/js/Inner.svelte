@@ -19,7 +19,7 @@
     position: relative;
   }
 
-  h3[data-year]::before {
+  h3[data-year] > .year {
     content: attr(data-year);
     color: ivory;
     display: block;
@@ -27,7 +27,7 @@
   }
 
   @media (min-width: 1160px) {
-    h3[data-year]::before {
+    h3[data-year] > .year {
       margin-right: 1rem;
       position: absolute;
       right: 100%;
@@ -88,7 +88,10 @@
 
   {#each projects as { date, description, promised, delivered }}
     <div class="project-individual">
-      <h3 data-year={date} class="date-heading">{description}</h3>
+      <h3 data-year={date} class="date-heading">
+        <span class="year">{date}</span>
+        {description}
+      </h3>
 
       <table lang="en-us">
         <thead>
