@@ -46,67 +46,83 @@ const getComputedWidth = element => {
   return width + margin - padding + border;
 };
 
-export const onResize = function(selector) {
-  const headings = document.querySelectorAll(selector);
+export default class TerminalHeading {
+  constructor(selector) {
+    this.selector = selector;
+    this.elements = Array.from(document.querySelectorAll(this.selector));
 
-  if (!headings.length) return;
+    this._init();
+  }
 
-  // get width of parent to determine available space
-  const parentWidth = headings[0].parentNode.getBoundingClientRect().width;
+  _init() {
+    this.elements.forEach(hed => {
+      const titleHTML = hed.innerHTML
+        .replace(/<[^>]*>?/gm, '') // strip existing html
+        .replace(/&nbsp;/g, ' ') // strip existing &nbsp;
+        .replace(/\S/g, '<b>$&</b>')
+        .replace(
+          /\s/g,
+          `</div><div class="space"><b>${String.fromCharCode(
+            160
+          )}</b></div><div>`
+        );
 
-  // get cell width, including margins
-  const cellWidth = getComputedWidth(headings[0].querySelector('b'));
+      // hed.innerHTML = `<div>${titleHTML}</div>`;
+      const clone = hed.cloneNode();
 
-  // round heading width to multiple of cellWidth
-  const roundedWidth = Math.floor(parentWidth / cellWidth) * cellWidth;
+      clone.classList.add('block-heading');
+      clone.innerHTML = `<div>${titleHTML}</div>`;
 
-  headings.forEach(heading => {
-    // set to rounded width
-    heading.style.width = roundedWidth + 'px';
+      hed.classList.add('u-hidden');
+      hed.parentNode.insertBefore(clone, hed);
 
-    // show or hide spacing elements so that we don't have hanging blank
-    // tiles
-    const spaces = heading.querySelectorAll('div.space, div.spacer');
-
-    spaces.forEach(spaceEl => {
-      const prev = matchesPrev(spaceEl);
-      const next = matchesNext(spaceEl);
-
-      // if aligned with prev and next, show the tile;
-      // -- else if aligned with prev only, make the tile invisible;
-      // -- else if aligned with next only, make the tile invisible *and* set
-      //    its width to 0
-      if (prev && next) {
-        spaceEl.classList.remove('u-invisible', 'u-w0');
-      } else if (prev) {
-        spaceEl.classList.add('u-invisible');
-      } else if (next) {
-        spaceEl.classList.add('u-invisible', 'u-w0');
-      }
+      this.elements.pop(hed);
+      this.elements.push(clone);
     });
-  });
-};
 
-const init = function(selector) {
-  const terminalHeadings = document.querySelectorAll(selector);
+    window.addEventListener('resize', debounce(() => this._onResize(), 100));
+    setTimeout(() => this._onResize(), 500);
+  }
 
-  terminalHeadings.forEach(hed => {
-    const titleHTML = hed.innerHTML
-      .replace(/<[^>]*>?/gm, '') // strip existing html
-      .replace(/&nbsp;/g, ' ') // strip existing &nbsp;
-      .replace(/\S/g, '<b>$&</b>')
-      .replace(
-        /\s/g,
-        `</div><div class="space"><b>${String.fromCharCode(160)}</b></div><div>`
-      );
+  _onResize(clientWidth = null) {
+    const headings = this.elements;
 
-    hed.innerHTML = `<div>${titleHTML}</div>`;
-  });
+    if (!headings.length) return;
 
-  window.addEventListener('resize', debounce(() => onResize(selector), 100));
-  setTimeout(() => onResize(selector), 500);
-};
+    // get width of parent to determine available space
+    const parentWidth =
+      clientWidth || headings[0].parentNode.getBoundingClientRect().width;
 
-export default function TerminalHeading(selector) {
-  init(selector);
+    // get cell width, including margins
+    const cellWidth = getComputedWidth(headings[0].querySelector('b'));
+
+    // round heading width to multiple of cellWidth
+    const roundedWidth = Math.floor(parentWidth / cellWidth) * cellWidth;
+
+    headings.forEach(heading => {
+      // set to rounded width
+      heading.style.width = roundedWidth + 'px';
+
+      // show or hide spacing elements so that we don't have hanging blank
+      // tiles
+      const spaces = heading.querySelectorAll('div.space, div.spacer');
+
+      spaces.forEach(spaceEl => {
+        const prev = matchesPrev(spaceEl);
+        const next = matchesNext(spaceEl);
+
+        // if aligned with prev and next, show the tile;
+        // -- else if aligned with prev only, make the tile invisible;
+        // -- else if aligned with next only, make the tile invisible *and* set
+        //    its width to 0
+        if (prev && next) {
+          spaceEl.classList.remove('u-invisible', 'u-w0');
+        } else if (prev) {
+          spaceEl.classList.add('u-invisible');
+        } else if (next) {
+          spaceEl.classList.add('u-invisible', 'u-w0');
+        }
+      });
+    });
+  }
 }
