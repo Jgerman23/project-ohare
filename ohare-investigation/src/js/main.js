@@ -9,14 +9,13 @@ import 'lazysizes/plugins/blur-up/ls.blur-up';
 import HeadingTerminal from './heading-terminal';
 
 let pymParents;
-let heading;
 
 document.addEventListener('DOMContentLoaded', function() {
-  heading = new HeadingTerminal('.heading-terminal');
+  new HeadingTerminal(document.querySelector('.heading-terminal'));
 });
 
 window.addEventListener('load', function() {
-  pymParents = window.pym.autoInitInstances;
+  if ('pym' in window) pymParents = window.pym.autoInitInstances;
 });
 
 window.addEventListener('beforeprint', function() {

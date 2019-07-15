@@ -2,6 +2,78 @@
 
 import debounce from 'debounce';
 
+export default class TerminalHeading {
+  constructor(element, init = true) {
+    this.element = element;
+
+    if (init) this._init();
+
+    this._addListeners();
+  }
+
+  _init() {
+    const titleHTML = this.element.innerHTML
+      .replace(/<[^>]*>?/gm, '') // strip existing html
+      .replace(/&nbsp;/g, ' ') // strip existing &nbsp;
+      .replace(/\S/g, '<b>$&</b>')
+      .replace(
+        /\s/g,
+        `</div><div class="space"><b>${String.fromCharCode(160)}</b></div><div>`
+      );
+
+    const clone = this.element.cloneNode();
+
+    clone.classList.add('block-heading');
+    clone.innerHTML = `<div>${titleHTML}</div>`;
+
+    this.element.classList.add('u-hidden');
+    this.element.parentNode.insertBefore(clone, this.element);
+
+    this.element = clone;
+  }
+
+  _addListeners() {
+    window.addEventListener('resize', debounce(() => this._onResize(), 100));
+    setTimeout(() => this._onResize(), 500);
+  }
+
+  _onResize(clientWidth = null) {
+    // get width of parent to determine available space
+    const parentWidth =
+      clientWidth || this.element.parentNode.getBoundingClientRect().width;
+
+    // get cell width, including margins
+    const cellWidth = getComputedWidth(this.element.querySelector('b'));
+
+    // round heading width to multiple of cellWidth
+    const roundedWidth = Math.floor(parentWidth / cellWidth) * cellWidth;
+
+    // set to rounded width
+    this.element.style.width = roundedWidth + 'px';
+
+    // show or hide spacing elements so that we don't have hanging blank
+    // tiles
+    const spaces = this.element.querySelectorAll('div.space, div.spacer');
+
+    spaces.forEach(spaceEl => {
+      const prev = matchesPrev(spaceEl);
+      const next = matchesNext(spaceEl);
+
+      // if aligned with prev and next, show the tile;
+      // -- else if aligned with prev only, make the tile invisible;
+      // -- else if aligned with next only, make the tile invisible *and* set
+      //    its width to 0
+      if (prev && next) {
+        spaceEl.classList.remove('u-invisible', 'u-w0');
+      } else if (prev) {
+        spaceEl.classList.add('u-invisible');
+      } else if (next) {
+        spaceEl.classList.add('u-invisible', 'u-w0');
+      }
+    });
+  }
+}
+
 const getNextSibling = function(elem, selector) {
   // Get the next sibling element
   var sibling = elem.nextElementSibling;
@@ -45,84 +117,3 @@ const getComputedWidth = element => {
 
   return width + margin - padding + border;
 };
-
-export default class TerminalHeading {
-  constructor(selector) {
-    this.selector = selector;
-    this.elements = Array.from(document.querySelectorAll(this.selector));
-
-    this._init();
-  }
-
-  _init() {
-    this.elements.forEach(hed => {
-      const titleHTML = hed.innerHTML
-        .replace(/<[^>]*>?/gm, '') // strip existing html
-        .replace(/&nbsp;/g, ' ') // strip existing &nbsp;
-        .replace(/\S/g, '<b>$&</b>')
-        .replace(
-          /\s/g,
-          `</div><div class="space"><b>${String.fromCharCode(
-            160
-          )}</b></div><div>`
-        );
-
-      // hed.innerHTML = `<div>${titleHTML}</div>`;
-      const clone = hed.cloneNode();
-
-      clone.classList.add('block-heading');
-      clone.innerHTML = `<div>${titleHTML}</div>`;
-
-      hed.classList.add('u-hidden');
-      hed.parentNode.insertBefore(clone, hed);
-
-      this.elements.pop(hed);
-      this.elements.push(clone);
-    });
-
-    window.addEventListener('resize', debounce(() => this._onResize(), 100));
-    setTimeout(() => this._onResize(), 500);
-  }
-
-  _onResize(clientWidth = null) {
-    const headings = this.elements;
-
-    if (!headings.length) return;
-
-    // get width of parent to determine available space
-    const parentWidth =
-      clientWidth || headings[0].parentNode.getBoundingClientRect().width;
-
-    // get cell width, including margins
-    const cellWidth = getComputedWidth(headings[0].querySelector('b'));
-
-    // round heading width to multiple of cellWidth
-    const roundedWidth = Math.floor(parentWidth / cellWidth) * cellWidth;
-
-    headings.forEach(heading => {
-      // set to rounded width
-      heading.style.width = roundedWidth + 'px';
-
-      // show or hide spacing elements so that we don't have hanging blank
-      // tiles
-      const spaces = heading.querySelectorAll('div.space, div.spacer');
-
-      spaces.forEach(spaceEl => {
-        const prev = matchesPrev(spaceEl);
-        const next = matchesNext(spaceEl);
-
-        // if aligned with prev and next, show the tile;
-        // -- else if aligned with prev only, make the tile invisible;
-        // -- else if aligned with next only, make the tile invisible *and* set
-        //    its width to 0
-        if (prev && next) {
-          spaceEl.classList.remove('u-invisible', 'u-w0');
-        } else if (prev) {
-          spaceEl.classList.add('u-invisible');
-        } else if (next) {
-          spaceEl.classList.add('u-invisible', 'u-w0');
-        }
-      });
-    });
-  }
-}
