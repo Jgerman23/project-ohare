@@ -1,17 +1,15 @@
-<script context="module">
-  import debounce from "debounce";
-  import { onResize } from "ohare-investigation/src/js/heading-terminal";
-
-  document.addEventListener("DOMContentLoaded", function() {
-    window.addEventListener(
-      "resize",
-      debounce(() => onResize(".project-heading"), 200)
-    );
-    setTimeout(() => onResize(".project-heading"), 500);
-  });
-</script>
-
 <script>
+  /* init terminal styling */
+  import { onMount } from "svelte";
+  import TerminalHeading from "ohare-investigation/src/js/heading-terminal";
+
+  let headingEl;
+
+  onMount(() => {
+    const heading = new TerminalHeading(headingEl, false);
+  });
+
+  /* set up html */
   export let title;
 
   const delayedHTML = `<div class="red">${"Delayed".replace(
@@ -82,7 +80,7 @@
   }
 </style>
 
-<h2 class="project-heading">
+<h2 class="project-heading" bind:this={headingEl}>
   {@html projectHTML}
   <div class="spacer" />
   {@html delayedHTML}
