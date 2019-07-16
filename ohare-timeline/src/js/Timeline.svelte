@@ -30,12 +30,37 @@
 
             // set current timeline item as current slide in store
             slide.set(entry.target.parentNode);
-          } else {
-            entry.target.parentNode.classList.remove("is-active");
           }
         });
       },
-      { threshold: 0.75 }
+      {
+        threshold: 0.75
+      }
+    );
+
+    // manage global display based on intersection of first timeline item
+    // wasAbove / isAbove ripped from https://stackoverflow.com/a/47117560
+    let wasAbove;
+
+    new IntersectionObserver(
+      entries => {
+        entries.forEach(entry => {
+          const isAbove = entry.boundingClientRect.y < entry.rootBounds.y;
+
+          if (entry.isIntersecting) {
+            slide.set(entry.target.parentNode);
+          } else if (!wasAbove) {
+            // if scrolling up, hide everything
+            allItems.forEach(c => c.classList.remove("is-active"));
+            slide.set(null);
+          }
+
+          wasAbove = isAbove;
+        });
+      },
+      { threshold: [0, 1.0] }
+    ).observe(
+      document.querySelector(".tl-event-container:first-of-type .tl-text")
     );
 
     textBlocks.forEach(e => {
