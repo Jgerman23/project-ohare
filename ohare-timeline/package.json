@@ -60,6 +60,7 @@
     "webpack-node-externals": "^1.7.2"
   },
   "dependencies": {
+    "intersection-observer": "^0.7.0",
     "lazysizes": "^5.1.0",
     "ohare-investigation": "file:../ohare-investigation"
   },

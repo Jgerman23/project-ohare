@@ -2,6 +2,9 @@
   // https://svelte.dev/docs#svelte_store
   import { slide } from "./stores";
 
+  // load polyfill
+  import "intersection-observer";
+
   /**
    * Set up IntersectionObserver.
    *
@@ -111,7 +114,7 @@
 <style>
   .controls {
     position: sticky;
-    top: calc(100vh - 2.5rem - 1rem);
+    top: calc(100vh - 2.5rem - 1.5rem);
     height: 2.5rem;
     text-align: right;
     z-index: 99;
