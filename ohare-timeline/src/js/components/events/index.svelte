@@ -69,6 +69,28 @@
     height: 4px;
     margin-bottom: 0.5rem;
   }
+
+  .tl-event-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    height: auto;
+    min-height: 100vh;
+  }
+
+  .tl-text {
+    opacity: 0.5;
+    transition: opacity 0.3s ease;
+
+    :global(.is-active) & {
+      opacity: 1;
+    }
+  }
+
+  :global(.is-active) figure {
+    pointer-events: all;
+  }
 </style>
 
 <div class="timeline-events">

@@ -1,60 +1,65 @@
 <script context="module">
+  // https://svelte.dev/docs#svelte_store
   import { slide } from "./stores";
 
-  let allContainers = [];
+  /**
+   * Set up IntersectionObserver.
+   *
+   * We'll use the intersections of timeline text blocks to detect what our
+   * active slide is.
+   *
+   * - API docs: https://developer.mozilla.org/en-US/docs/Web/API/Intersection_Observer_API
+   *
+   **/
+  function createObserver() {
+    const allItems = document.querySelectorAll(".tl-event-container");
 
-  let showScrolly = true;
-
-  const onLoad = () => {
-    allContainers = document.querySelectorAll(".tl-event-container");
-
-    const eventItems = document.querySelectorAll(
+    const textBlocks = document.querySelectorAll(
       ".tl-event-container .tl-text"
     );
 
-    const eventItemObserver = new IntersectionObserver(entries => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.parentNode.classList.add("is-active");
-          slide.set(entry.target.parentNode);
-        } else {
-          entry.target.parentNode.classList.remove("is-active");
-        }
-      });
-    });
+    const observer = new IntersectionObserver(
+      entries => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            // remove active class from all timelime items
+            allItems.forEach(c => c.classList.remove("is-active"));
 
-    eventItems.forEach(ei => {
-      eventItemObserver.observe(ei);
-    });
-  };
+            // add is-active to current timeline item
+            entry.target.parentNode.classList.add("is-active");
 
-  window.addEventListener("load", onLoad);
+            // set current timeline item as current slide in store
+            slide.set(entry.target.parentNode);
+          }
+        });
+      },
+      { threshold: 0.75 }
+    );
+
+    textBlocks.forEach(e => {
+      observer.observe(e);
+    });
+  }
 </script>
 
 <script>
   export let content = [];
 
+  import { onMount, onDestroy } from "svelte";
+
   import Button from "./components/controls/Button";
-  import Switch from "./components/controls/Switch";
   import TimelineEvents from "./components/events";
 
-  let currentSlide, currentIndex;
+  let currentSlide;
 
   const unsubscribe = slide.subscribe(value => {
     currentSlide = value;
-    currentIndex = Array.prototype.indexOf.call(
-      document.querySelectorAll(".tl-event-container"),
-      currentSlide
-    );
   });
 
-  import { onDestroy } from "svelte";
+  $: prevEl = currentSlide && currentSlide.previousElementSibling;
+  $: nextEl = currentSlide && currentSlide.nextElementSibling;
 
-  onDestroy(unsubscribe);
-
-  const onClickPrev = () => {
-    const prevEl = allContainers.item(currentIndex - 1);
-
+  $: onClickPrev = function() {
     if (prevEl)
       prevEl.querySelector(".tl-text").scrollIntoView({
         behavior: "smooth",
@@ -63,9 +68,7 @@
       });
   };
 
-  const onClickNext = () => {
-    const nextEl = allContainers.item(currentIndex + 1);
-
+  $: onClickNext = function() {
     if (nextEl)
       nextEl.querySelector(".tl-text").scrollIntoView({
         behavior: "smooth",
@@ -73,67 +76,32 @@
         inline: "nearest"
       });
   };
+
+  onMount(createObserver);
+  onDestroy(unsubscribe);
 </script>
 
-<style lang="scss">
-  :global(.timeline.is-scrolly) {
-    .tl-event-container {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-
-      height: auto;
-      min-height: 100vh;
-
-      .tl-text {
-        margin-top: 90vh;
-      }
-
-      .image-container {
-        opacity: 0;
-        transition: opacity 0.3s ease;
-      }
-
-      &.is-active .image-container {
-        opacity: 1;
-      }
-
-      &.is-active figure {
-        pointer-events: all;
-      }
-    }
-  }
-
+<style>
   .controls {
     position: fixed;
     bottom: 1rem;
-    // left: 0;
     right: 1rem;
     text-align: right;
     z-index: 99;
   }
 </style>
 
-{#if showScrolly}
-  <div class="controls">
-    <Button on:click={onClickPrev} disabled={currentIndex <= 0}>
-      <i class="fas fa-chevron-up" />
-    </Button>
-    <Button
-      on:click={onClickNext}
-      disabled={currentIndex == allContainers.length - 1}>
-      Next
-      <i class="fas fa-chevron-down" />
-    </Button>
-  </div>
-{/if}
+<div class="controls">
+  <Button on:click={onClickPrev} disabled={!prevEl}>
+    <i class="fas fa-chevron-up" />
+  </Button>
+  <Button on:click={onClickNext} disabled={!nextEl}>
+    Next
+    <i class="fas fa-chevron-down" />
+  </Button>
+</div>
 
-<!-- <p>
-  Show rich media:
-  <Switch bind:checked={showScrolly} />
-</p> -->
-
-<div class="timeline" class:is-scrolly={showScrolly} id="timeline-inner">
+<div class="timeline" id="timeline-inner">
   {#each content as contentItem}
     {#if contentItem.type == 'events'}
       <TimelineEvents events={contentItem.value} />

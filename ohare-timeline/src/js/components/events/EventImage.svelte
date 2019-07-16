@@ -23,6 +23,15 @@
     align-items: center;
   }
 
+  .image-container {
+    opacity: 0;
+    transition: opacity 0.3s ease;
+
+    :global(.is-active) & {
+      opacity: 1;
+    }
+  }
+
   .image-container-inner {
     width: calc(100vw - 2rem);
     max-width: calc(100vw - 2rem);
