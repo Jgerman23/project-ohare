@@ -81,3 +81,65 @@ nav.global .share {
     color: transparentize(ivory, 0.2) !important;
   }
 }
+
+@media print {
+  html {
+    font-size: 12px;
+  }
+
+  .lede-copy {
+    color: #1a1a1a !important;
+  }
+
+  .controls {
+    display: none;
+  }
+
+  .date-heading::before,
+  .timeline-events::before,
+  .intro::after,
+  .tl-event::before {
+    // background-color: #1a1a1a !important;
+    display: none !important;
+  }
+
+  .intro {
+    background: unset !important;
+    padding: 0;
+  }
+
+  .image-container {
+    display: none !important;
+  }
+
+  .tl-event-container {
+    min-height: unset !important;
+    padding-top: 1rem !important;
+    padding-bottom: 1rem !important;
+  }
+
+  .tl-text {
+    color: #1a1a1a !important;
+    background: unset !important;
+    opacity: 1 !important;
+  }
+
+  .tl-event-container {
+    position: relative !important;
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+
+  .tl-cutline {
+    display: none;
+  }
+
+  .timeline-events {
+    padding: 0 !important;
+  }
+
+  .tl-text {
+    padding: 0 !important;
+    break-inside: avoid;
+  }
+}

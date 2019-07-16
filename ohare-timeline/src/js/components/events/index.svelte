@@ -104,7 +104,7 @@
         <div class="tl-event">
           {@html md(event.Description)}
           {#if event.image}
-            <p>({event.image.cutline})</p>
+            <p class="tl-cutline">({event.image.cutline})</p>
           {/if}
         </div>
       </div>

@@ -30,6 +30,8 @@
 
             // set current timeline item as current slide in store
             slide.set(entry.target.parentNode);
+          } else {
+            entry.target.parentNode.classList.remove("is-active");
           }
         });
       },
