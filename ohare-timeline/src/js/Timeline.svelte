@@ -61,22 +61,22 @@
   $: prevEl = currentSlide && currentSlide.previousElementSibling;
   $: nextEl = currentSlide && currentSlide.nextElementSibling;
 
+  const scrollOptions = {
+    behavior: "smooth",
+    block: "center",
+    inline: "nearest"
+  };
+
+  const scrollToTop = function() {
+    document.querySelector("section.intro").scrollIntoView(scrollOptions);
+  };
+
   $: onClickPrev = function() {
-    if (prevEl)
-      prevEl.querySelector(".tl-text").scrollIntoView({
-        behavior: "smooth",
-        block: "center",
-        inline: "nearest"
-      });
+    if (prevEl) prevEl.querySelector(".tl-text").scrollIntoView(scrollOptions);
   };
 
   $: onClickNext = function() {
-    if (nextEl)
-      nextEl.querySelector(".tl-text").scrollIntoView({
-        behavior: "smooth",
-        block: "center",
-        inline: "nearest"
-      });
+    if (nextEl) nextEl.querySelector(".tl-text").scrollIntoView(scrollOptions);
   };
 
   onMount(createObserver);
@@ -85,15 +85,16 @@
 
 <style>
   .controls {
-    position: fixed;
-    bottom: 1rem;
-    right: 1rem;
+    position: sticky;
+    top: calc(100vh - 2.5rem - 1rem);
+    height: 2.5rem;
     text-align: right;
     z-index: 99;
   }
 </style>
 
 <div class="controls">
+  <Button on:click={scrollToTop} disabled={!prevEl}>Top</Button>
   <Button on:click={onClickPrev} disabled={!prevEl}>
     <i class="fas fa-chevron-up" />
   </Button>
