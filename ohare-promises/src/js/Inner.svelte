@@ -63,11 +63,9 @@
 
   .projects-container {
     margin-top: 5rem;
-    margin-bottom: 10rem;
   }
 
   .projects-container > * {
-    // margin-top: 5rem;
     margin-bottom: 5rem;
   }
 </style>
