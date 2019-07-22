@@ -46,6 +46,11 @@
 .table-of-contents {
   @extend .pullquote;
 
+  @include media('<=phone') {
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+  }
+
   hr {
     margin: 1.5rem 0;
   }
@@ -157,5 +162,31 @@
 .refer--full {
   .story-link {
     flex-direction: column;
+  }
+}
+
+.card.refer {
+  background: transparent;
+  border-bottom: none;
+
+  > .card__subtitle {
+    margin-bottom: 0.5em;
+  }
+}
+
+.story-after {
+  display: flex;
+  flex-direction: column;
+
+  @include media('>phone', '<=tablet') {
+    .col-right {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-column-gap: 2rem;
+    }
+  }
+
+  @include media('>tablet') {
+    flex-direction: row;
   }
 }
