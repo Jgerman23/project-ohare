@@ -14,7 +14,7 @@ module.exports = {
       path.resolve(process.cwd(), 'src/data/data.json')
     );
 
-    var shareImageUrl = "O'Hare- Projects.jpg";
+    var shareImageUrl = 'images/ohare-projects.jpg';
     var shareImagePath = path.resolve(
       process.cwd(),
       'src/static/',
