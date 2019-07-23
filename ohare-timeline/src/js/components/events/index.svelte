@@ -117,12 +117,14 @@
         <EventImage {...event.image} />
       {/if}
       <div class="tl-text">
-        <h3 class="date-heading">{event.Date}</h3>
-        <div class="tl-event">
-          {@html md(event.Description)}
-          {#if event.image}
-            <p class="tl-cutline">News clipping: {event.image.cutline}</p>
-          {/if}
+        <div class="tl-text-contents">
+          <h3 class="date-heading">{event.Date}</h3>
+          <div class="tl-event">
+            {@html md(event.Description)}
+            {#if event.image}
+              <p class="tl-cutline">{event.image.cutline}</p>
+            {/if}
+          </div>
         </div>
       </div>
     </div>

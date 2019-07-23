@@ -11,6 +11,21 @@
   z-index: 2;
   background: transparentize($page-background, 0.2);
   padding: 1rem;
+
+  @include media('<phone') {
+    width: 100vw;
+    position: absolute;
+    left: -1rem;
+
+    .tl-text-contents {
+      @include fit-paragraph;
+      padding: 1rem 2rem;
+    }
+
+    .date-heading::before {
+      left: calc(1rem + 1px) !important;
+    }
+  }
 }
 
 section.story {
