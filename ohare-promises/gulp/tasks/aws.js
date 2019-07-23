@@ -7,7 +7,6 @@ const gulp = require('gulp');
 const fail = require('gulp-fail');
 const gulpIf = require('gulp-if');
 const gutil = require('gulp-util');
-const fs = require('fs-extra');
 const path = require('path');
 const open = require('open');
 const revAll = require('gulp-rev-all');
@@ -27,7 +26,8 @@ if (argv.production) {
   publishParams.Cloudfront = process.env.CLOUDFRONT_DISTRIBUTION_ID;
 }
 
-const meta = fs.readJsonSync(path.resolve(process.cwd(), 'meta.json'));
+const meta = require(path.resolve(process.cwd(), 'meta.js'))();
+
 const publisher = awspublish.create({
   accessKeyId: process.env.AWS_ACCESS_KEY_ID,
   secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
@@ -97,7 +97,7 @@ async function main() {
         )
       );
     })
-    .pipe(prompt.confirm('Are you sure?'))
+    .pipe(gulpIf(!argv.force, prompt.confirm('Are you sure?')))
     .pipe(
       rename(pubPath => {
         // eslint-disable-next-line no-param-reassign

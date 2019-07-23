@@ -1,1 +1,114 @@
-@import '~bga-style/scss/webpack';
+$table_border_dark: transparentize(ivory, 0.3);
+
+@import '~ohare-investigation/src/scss/main';
+
+.project-heading {
+  color: $accent;
+}
+
+th {
+  text-align: center;
+}
+
+thead {
+  border-bottom-color: $table_border_dark !important;
+}
+
+.date-heading {
+  // border-bottom: solid 4px $accent;
+  // color: $accent;
+  color: $primary-text-color;
+  padding-bottom: 0.5rem;
+  margin-top: 3rem;
+  margin-bottom: 1rem;
+  font-family: $sans;
+  font-size: 1.3rem;
+
+  &::before {
+    // color: dimgray;
+    // opacity: 0.8;
+    color: transparentize($primary-text-color, 0.3) !important;
+  }
+
+  @include media('>=tablet') {
+    font-size: 1.5rem;
+  }
+}
+
+.story > p,
+.story > hr {
+  @include align-center;
+}
+
+@include media('<phone') {
+  table tr,
+  table td {
+    display: block;
+    padding: 0.5rem 0 !important;
+    text-align: left !important;
+    white-space: normal;
+    hyphens: unset !important;
+  }
+
+  table td:first-child {
+    font-weight: bold;
+    width: 100% !important;
+    border-bottom: 1px solid ivory;
+  }
+
+  table td[data-title]:before {
+    content: attr(data-title) ':\00A0';
+    font-weight: bold;
+  }
+
+  tr[data-name='date'] td,
+  tr[data-name='cost'] td {
+    display: flex;
+    justify-content: space-between;
+    // text-align: right !important;
+  }
+
+  table th,
+  table td:empty {
+    display: none !important;
+  }
+}
+
+.project-heading {
+  @include media('>=tablet') {
+    --c-width: 40px !important;
+  }
+}
+
+.project-image {
+  @include full-width;
+
+  margin-top: 1rem !important;
+  margin-bottom: 1rem !important;
+
+  img {
+    min-height: 300px;
+    height: auto;
+    max-height: 600px;
+    object-fit: cover;
+  }
+
+  figcaption {
+    @include fit-inner;
+    // text-align: right;
+  }
+}
+
+nav.global {
+  position: static !important;
+}
+
+nav.global .icon--bga-logo,
+nav.global .share {
+  color: ivory !important;
+
+  &:hover,
+  &:focus {
+    color: transparentize(ivory, 0.2) !important;
+  }
+}

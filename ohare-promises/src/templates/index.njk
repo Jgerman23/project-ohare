@@ -25,9 +25,49 @@
   <article class="main">
     {% include "partials/_header.njk" %}
 
-    {# {% include "partials/_story.njk" %} #}
+    <section class="story">
+      <p>{{ ARCHIE.top.leadin }}</p>
 
-    {# {% include "partials/_credits.njk" %} #}
+      <div id="svelte-app"></div>
+
+      <hr>
+      <p class="sources sans">Sources: {{ ARCHIE.sources }}</p>
+      <hr>
+
+      <div class="story-after art large align-center">
+        <div class="col-left">
+          <aside class="art medium">
+            <script async src="https://modules.wearehearken.com/bga/embed/3549.js"></script>
+          </aside>
+        </div>
+
+        <div class="col-right">
+          <aside class="card refer" style="margin-left: 0;">
+            <h3 class="card__subtitle">Follow our work</h3>
+            <p class="card__text"> Get BGA news, investigations, analysis and more, straight to your inbox once a week. </p>
+            <div class="link link--large">
+              <a href="https://www.bettergov.org/sign-up-for-e-alerts">
+                <span class="link__text">Sign up for e-alerts</span>
+              </a>
+            </div>
+          </aside>
+
+          <aside class="card refer" style="margin-left: 0;">
+            <h3 class="card__subtitle">Support our newsroom</h3>
+            <p class="card__text"> Investigations like this take months to produce and aren’t cheap. Will you help us keep going by making a $25 donation? </p>
+            <div class="link link--large">
+              <a href="https://bettergov.salsalabs.org/donationform/index.html?amount=25">
+                <span class="link__text">Donate to the BGA</span>
+              </a>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <hr>
+
+    {% include "media/_toc_bottom.html" %}
   </article>
 
   {% include "partials/_footer.njk" %}
@@ -45,5 +85,4 @@
 
 {% block js %}
 <script src="bundle.{{__webpack__.hash}}.js"></script>
-{# <script type="text/javascript" src="https://pym.nprapps.org/pym.v1.min.js"></script> #}
 {% endblock %}

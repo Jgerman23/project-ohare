@@ -2,9 +2,35 @@ const path = require('path');
 const webpack = require('webpack');
 const merge = require('webpack-merge');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const CopyPlugin = require('copy-webpack-plugin');
+const ImageminPlugin = require('imagemin-webpack-plugin').default;
+const sharp = require('sharp');
 
 const mode = process.env.NODE_ENV || 'development';
 const prod = mode === 'production';
+
+const responsiveImages = (widths, opts = {}) => {
+  const minWidth = opts.minWidth || 800;
+
+  return widths.map(width => {
+    let newWidth = Math.max(width, minWidth);
+
+    return {
+      from: 'src/static/images',
+      to: 'images',
+      transform: content =>
+        sharp(content)
+          .resize(newWidth)
+          .toBuffer(),
+      transformPath(targetPath, absolutePath) {
+        var arrPath = targetPath.split('.');
+        var ext = arrPath.pop();
+        var path = arrPath.join('.');
+        return `${path}-${width}.${ext}`;
+      }
+    };
+  });
+};
 
 let webpackConfig = {
   entry: {
@@ -15,8 +41,7 @@ let webpackConfig = {
   },
   output: {
     path: path.resolve(__dirname, 'public'),
-    filename: '[name].[hash].js',
-    publicPath: '/'
+    filename: '[name].[hash].js'
   },
   module: {
     rules: [
@@ -40,9 +65,15 @@ let webpackConfig = {
           loader: 'svelte-loader',
           options: {
             emitCss: true,
-            hotReload: prod ? false : true
+            hotReload: prod ? false : true,
+            preprocess: require('svelte-preprocess')({}),
+            hydratable: prod ? true : false
           }
         }
+      },
+      {
+        test: /\.(png|jpg|jpeg|gif|svg|woff|woff2|ttf|eot)$/,
+        use: 'file-loader'
       }
     ]
   },
@@ -51,9 +82,24 @@ let webpackConfig = {
     new MiniCssExtractPlugin({
       filename: '[name].[hash].css'
     }),
+    new CopyPlugin([
+      {
+        from: 'src/static',
+        to: ''
+      }
+      // ...responsiveImages([400, 800, 1200, 1800])
+    ]),
+    new ImageminPlugin({
+      test: /\.(jpe?g|png|gif|svg)$/i,
+      disable: prod ? false : true,
+      jpegtran: {
+        progressive: true
+      }
+    }),
     new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/) // ignore moment locales
   ],
-  devtool: prod ? false : 'inline-cheap-source-map'
+  devtool: prod ? false : 'inline-cheap-source-map',
+  stats: 'minimal'
 };
 
 // prod options
@@ -62,7 +108,6 @@ const glob = require('glob');
 const TerserJSPlugin = require('terser-webpack-plugin');
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const PurgeCssPlugin = require('purgecss-webpack-plugin');
-const CopyPlugin = require('copy-webpack-plugin');
 const PrerenderSPAPlugin = require('prerender-spa-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
@@ -77,9 +122,8 @@ prodConfig = {
   plugins: [
     new PurgeCssPlugin({
       paths: glob.sync(`${PATHS.src}/**/*`, { nodir: true }),
-      whitelistPatterns: [/^svelte-/]
+      whitelistPatterns: [/^svelte-/, /^u-/]
     }),
-    new CopyPlugin([{ from: 'src/static', to: '' }]),
     new PrerenderSPAPlugin({
       staticDir: path.join(__dirname, 'public'),
       routes: ['/']
