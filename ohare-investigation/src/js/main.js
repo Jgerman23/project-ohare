@@ -1,15 +1,29 @@
 import '../scss/main.scss';
 import './share';
-// import App from './App.svelte';
 
-// const app = new App({
-//   target: document.querySelector('article.main'),
-//   anchor: document.querySelector('section.story'),
-//   props: {
-//     name: 'world'
-//   }
-// });
+// initialize image lazyload using lazysizes
+// https://github.com/aFarkas/lazysizes
+import lazySizes from 'lazysizes';
+import 'lazysizes/plugins/blur-up/ls.blur-up';
 
-// window.app = app;
+import HeadingTerminal from './heading-terminal';
 
-// export default app;
+let pymParents;
+
+// Load custom tracking code lazily, so it's non-blocking
+import('./analytics.js').then(analytics => analytics.init());
+
+document.addEventListener('DOMContentLoaded', function() {
+  new HeadingTerminal(document.querySelector('.heading-terminal'));
+});
+
+window.addEventListener('load', function() {
+  if ('pym' in window) pymParents = window.pym.autoInitInstances;
+});
+
+window.addEventListener('beforeprint', function() {
+  // send new print width for pym embeds
+  pymParents.forEach(pymParent => {
+    pymParent.sendWidth();
+  });
+});

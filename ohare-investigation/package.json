@@ -2,8 +2,8 @@
   "name": "ohare-investigation",
   "version": "1.0.0",
   "devDependencies": {
-    "@babel/core": "^7.4.5",
-    "@babel/preset-env": "^7.4.5",
+    "@babel/core": "^7.5.4",
+    "@babel/preset-env": "^7.5.4",
     "@newswire/doc-to-archieml": "^1.0.0",
     "@newswire/sheet-to-data": "^1.0.0",
     "autoprefixer": "^9.6.0",
@@ -15,6 +15,7 @@
     "css-loader": "^2.1.1",
     "dotenv": "^8.0.0",
     "dummyjs": "^1.1.7",
+    "file-loader": "^4.0.0",
     "gulp": "^4.0.2",
     "gulp-awspublish": "^4.0.0",
     "gulp-cloudfront-invalidate-aws-publish": "^1.0.0",
@@ -27,6 +28,10 @@
     "gulp-util": "^3.0.8",
     "html-loader": "^0.5.5",
     "html-webpack-plugin": "^3.2.0",
+    "http-server": "^0.11.1",
+    "image-size": "^0.7.4",
+    "image-type": "^4.1.0",
+    "lodash.merge": "^4.6.2",
     "marked": "^0.6.2",
     "mini-css-extract-plugin": "^0.6.0",
     "node-sass": "^4.12.0",
@@ -38,8 +43,10 @@
     "postcss-loader": "^3.0.0",
     "prerender-spa-plugin": "^3.4.0",
     "purgecss-webpack-plugin": "^1.5.0",
+    "read-chunk": "^3.2.0",
     "sass-loader": "^7.1.0",
     "serve": "^11.0.0",
+    "sharp": "^0.22.1",
     "style-loader": "^0.23.1",
     "svelte": "^3.0.0",
     "svelte-loader": "2.13.3",
@@ -50,9 +57,16 @@
     "webpack-merge": "^4.2.1",
     "webpack-node-externals": "^1.7.2"
   },
+  "dependencies": {
+    "autotrack": "^2.4.1",
+    "debounce": "^1.2.0",
+    "lazysizes": "^5.1.0"
+  },
   "scripts": {
     "build": "cross-env NODE_ENV=production webpack",
-    "dev": "nodemon --watch webpack.config.js --watch config --exec 'webpack-dev-server --content-base src/static'",
-    "preview": "yarn build && http-server -p 3000 public"
+    "dev": "nodemon --watch webpack.config.js --watch config --exec webpack-dev-server",
+    "preview": "yarn build && http-server -p 3000 public -o",
+    "full-deploy": "gulp archie && yarn build && gulp aws --force",
+    "full-deploy:prod": "gulp archie && yarn build && gulp aws --force --production"
   }
 }

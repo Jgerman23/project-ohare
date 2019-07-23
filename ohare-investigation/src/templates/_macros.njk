@@ -1,9 +1,11 @@
-{# {% macro jpg(name, alt='Image') %}
-<img src="images/{{ name }}-1800.jpg" srcset="images/{{ name }}-400.jpg 400w, images/{{ name }}-800.jpg 800w, images/{{ name }}-1200.jpg 1200w, images/{{ name }}-1800.jpg 1800w" alt="{{ alt }}" />
-{% endmacro %} #}
-
+{# using https://github.com/aFarkas/lazysizes #}
 {% macro jpg(name, alt='Image') %}
-<img src="images/{{ name }}.jpg" alt="{{ alt }}" />
+<img 
+  data-lowsrc="images/{{ name }}-400.jpg"
+  data-srcset="images/{{ name }}-400.jpg 400w, images/{{ name }}-800.jpg 800w, images/{{ name }}-1200.jpg 1200w, images/{{ name }}-1800.jpg 1800w" 
+  alt="{{ alt }}" 
+  class="lazyload" 
+  />
 {% endmacro %}
 
 {# This is partially cribbed from AJAM's tarbell-big-read-template https://github.com/ajam/tarbell-big-read-template #}
@@ -50,7 +52,7 @@
 
 
 {% macro build_subhed(subhed) %}
-<h3 class="subhed">{{ subhed }}</h3>
+<h3 class="subhed"><i class="fas fa-plane"></i>{{ subhed }}</h3>
 {% endmacro %}
 
 
@@ -59,7 +61,7 @@
 <figure id="{{art.slug}}" class="{{ getArtClasses(art) }}">
 
   {% if art.type == "pym" %}
-    <div data-pym-src="{{art.source}}"></div>
+    <div data-pym-src="{{art.source}}" data-pym-loader></div>
   {% elif art.type == "photo" %}
     {% set regExp = r/^https?:\/\/.+$/ %}
     

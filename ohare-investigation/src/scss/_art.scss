@@ -42,3 +42,151 @@
     margin-top: 1rem;
   }
 }
+
+.table-of-contents {
+  @extend .pullquote;
+
+  @include media('<=phone') {
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+  }
+
+  hr {
+    margin: 1.5rem 0;
+  }
+
+  article {
+    margin: 2rem 0;
+  }
+}
+
+.table-of-contents--bottom {
+  figure {
+    height: 0;
+    padding-top: (2/3) * 100%;
+    position: relative;
+  }
+
+  img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+
+    height: 100%;
+    object-fit: contain;
+  }
+
+  @include media('>phone') {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 1rem 3rem;
+
+    > h3 {
+      grid-column: span 2;
+    }
+
+    .story-link {
+      height: 100%;
+      justify-content: space-between;
+    }
+  }
+}
+
+.refer {
+  padding-bottom: 1.5rem;
+  margin-bottom: 1.5rem;
+  border-bottom: 1px solid #ccc;
+
+  .headline {
+    transition: color 0.25s ease, text-decoration 0.25s ease;
+  }
+
+  .story-link {
+    background: none;
+    display: flex;
+  }
+
+  .flag {
+    font-family: $sans;
+    letter-spacing: 3.5px;
+    margin-bottom: 0.5rem;
+    text-transform: uppercase;
+    transition: color 0.25s ease;
+  }
+
+  img {
+    transition: opacity 0.25s ease;
+  }
+
+  .story-link:hover {
+    .headline {
+      color: $accent;
+      text-decoration: underline;
+    }
+
+    .flag {
+      color: $accent;
+    }
+
+    img {
+      opacity: 0.7;
+    }
+  }
+}
+
+.refer--square {
+  &:last-child {
+    border-bottom: unset;
+    margin-bottom: unset;
+    padding-bottom: unset;
+  }
+
+  .headline {
+    margin-bottom: 0;
+  }
+
+  figure {
+    flex: 0 0 100px;
+    margin-left: 10px;
+  }
+
+  img {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+  }
+}
+
+.refer--full {
+  .story-link {
+    flex-direction: column;
+  }
+}
+
+.card.refer {
+  background: transparent;
+  border-bottom: none;
+
+  > .card__subtitle {
+    margin-bottom: 0.5em;
+  }
+}
+
+.story-after {
+  display: flex;
+  flex-direction: column;
+
+  @include media('>phone', '<=tablet') {
+    .col-right {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-column-gap: 2rem;
+    }
+  }
+
+  @include media('>tablet') {
+    flex-direction: row;
+  }
+}
