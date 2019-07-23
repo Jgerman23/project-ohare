@@ -99,13 +99,31 @@
     document.querySelector("section.intro").scrollIntoView(scrollOptions);
   };
 
-  $: onClickPrev = function() {
+  const onClickPrev = function() {
     if (prevEl) prevEl.querySelector(".tl-text").scrollIntoView(scrollOptions);
   };
 
-  $: onClickNext = function() {
+  const onClickNext = function() {
     if (nextEl) nextEl.querySelector(".tl-text").scrollIntoView(scrollOptions);
   };
+
+  $: {
+    if (currentSlide) {
+      const hash = currentSlide.id;
+
+      // remove hash from slide to prevent scrolling
+      currentSlide.id = null;
+
+      // set url hash
+      window.history.replaceState(null, null, `#${hash}`);
+      // window.location.hash = `#${hash}`;
+
+      // add hash back to slide
+      currentSlide.id = hash;
+    } else {
+      window.history.replaceState(null, null, `#`);
+    }
+  }
 
   onMount(createObserver);
   onDestroy(unsubscribe);

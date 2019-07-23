@@ -3,6 +3,16 @@
   import md from "marked";
 
   export let events;
+
+  String.prototype.hashCode = function() {
+    var hash = 0,
+      i = 0,
+      len = this.length;
+    while (i < len) {
+      hash = ((hash << 5) - hash + this.charCodeAt(i++)) << 0;
+    }
+    return hash;
+  };
 </script>
 
 <style lang="scss">
@@ -88,14 +98,21 @@
     }
   }
 
+  .tl-cutline {
+    font-style: italic;
+    font-size: small;
+  }
+
   :global(.is-active) figure {
     pointer-events: all;
   }
 </style>
 
 <div class="timeline-events">
-  {#each events as event (event)}
-    <div class="tl-event-container">
+  {#each events as event, idx (event)}
+    <div
+      class="tl-event-container"
+      id={`slide-${event.Description.hashCode()}`}>
       {#if event.image}
         <EventImage {...event.image} />
       {/if}
@@ -104,7 +121,7 @@
         <div class="tl-event">
           {@html md(event.Description)}
           {#if event.image}
-            <p class="tl-cutline">({event.image.cutline})</p>
+            <p class="tl-cutline">News clipping: {event.image.cutline}</p>
           {/if}
         </div>
       </div>
