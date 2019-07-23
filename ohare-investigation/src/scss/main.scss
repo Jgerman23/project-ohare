@@ -51,8 +51,8 @@ nav.global .share {
   top: -0.2ch;
 }
 
-.story > p:first-of-type,
-.subhed + p {
+// .story > p:first-of-type,
+.story > .subhed + p {
   &:first-letter {
     @extend .dropcap;
   }
