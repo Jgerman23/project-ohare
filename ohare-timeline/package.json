@@ -33,7 +33,6 @@
     "image-type": "^4.1.0",
     "imagemin-webpack-plugin": "^2.4.2",
     "jpegtran-bin": "^4.0.0",
-    "lodash.merge": "^4.6.1",
     "marked": "^0.6.2",
     "mini-css-extract-plugin": "^0.6.0",
     "node-sass": "^4.12.0",
@@ -64,6 +63,7 @@
     "autotrack": "^2.4.1",
     "intersection-observer": "^0.7.0",
     "lazysizes": "^5.1.0",
+    "lodash.merge": "^4.6.2",
     "ohare-investigation": "file:../ohare-investigation"
   },
   "scripts": {

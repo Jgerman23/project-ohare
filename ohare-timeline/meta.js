@@ -37,5 +37,5 @@ module.exports = ({ title, description, updatedProps = {} } = {}) => {
     }
   };
 
-  return Object.assign(defaultProps, updatedProps);
+  return merge(defaultProps, updatedProps);
 };
