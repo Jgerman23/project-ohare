@@ -1,15 +1,27 @@
 import '../scss/main.scss';
-import './share';
-// import App from './App.svelte';
+import 'ohare-investigation/src/js/main';
+import Timeline from './Timeline.svelte';
+import ARCHIE from '../data/archie.json';
 
-// const app = new App({
-//   target: document.querySelector('article.main'),
-//   anchor: document.querySelector('section.story'),
-//   props: {
-//     name: 'world'
-//   }
-// });
+// initialize image lazyload using lazysizes
+// https://github.com/aFarkas/lazysizes
+import lazySizes from 'lazysizes';
+import 'lazysizes/plugins/blur-up/ls.blur-up';
 
-// window.app = app;
+const mode = process.env.NODE_ENV || 'development';
+const prod = mode === 'production';
 
-// export default app;
+// Load custom tracking code lazily, so it's non-blocking
+import('./analytics.js').then(analytics => analytics.init());
+
+const app = new Timeline({
+  target: document.querySelector('#timeline-app'),
+  hydrate: prod ? true : false,
+  props: {
+    content: ARCHIE.content
+  }
+});
+
+window.app = app;
+
+export default app;
