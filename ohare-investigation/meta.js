@@ -3,7 +3,7 @@ var merge = require('lodash.merge');
 module.exports = ({ title, description, updatedProps = {} } = {}) => {
   const pageTitle = title ? title : 'O&#39;Hare investigation';
   const pageDescription = description ? description : '';
-  const publishPath = '2019/ohare-investigation/';
+  const publishPath = '2019/ohare/investigation-billions-broken-promises/';
 
   const defaultProps = {
     pageTitle,

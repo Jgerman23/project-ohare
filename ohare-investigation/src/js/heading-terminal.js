@@ -69,6 +69,8 @@ export default class TerminalHeading {
         spaceEl.classList.add('u-invisible');
       } else if (next) {
         spaceEl.classList.add('u-invisible', 'u-w0');
+      } else {
+        spaceEl.classList.add('u-invisible', 'u-w0');
       }
     });
   }
