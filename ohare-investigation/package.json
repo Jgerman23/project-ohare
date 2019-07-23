@@ -58,6 +58,7 @@
     "webpack-node-externals": "^1.7.2"
   },
   "dependencies": {
+    "autotrack": "^2.4.1",
     "debounce": "^1.2.0",
     "lazysizes": "^5.1.0"
   },
