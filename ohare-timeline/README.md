@@ -6,12 +6,12 @@
 
 ## About
 
-| Title       | O&#39;Hare timeline                                                                                                                   |
-| ----------- | ----------------------------------------------------------------------------------------------------------------------------------- |
-| Developer   | [Patrick Judge](pjudge@bettergov.org)                                                                                               |
-| Link        | [https://projects.bettergov.org/2019/ohare-timeline/](https://projects.bettergov.org/2019/ohare-timeline/)                          |
-| Archie doc  | [1YSdJeAVipCdkgDKyQcvhsCgSq7fyzlcXmzh09zOgA9s](https://docs.google.com/document/d/1YSdJeAVipCdkgDKyQcvhsCgSq7fyzlcXmzh09zOgA9s/edit)           |
-| Spreadsheet | n/a |
+| Title       | O&#39;Hare timeline                                                                                                                  |
+| ----------- | ------------------------------------------------------------------------------------------------------------------------------------ |
+| Developer   | [Patrick Judge](pjudge@bettergov.org)                                                                                                |
+| Link        | [https://projects.bettergov.org/2019/ohare/timeline/](https://projects.bettergov.org/2019/ohare/timeline/)                           |
+| Archie doc  | [1YSdJeAVipCdkgDKyQcvhsCgSq7fyzlcXmzh09zOgA9s](https://docs.google.com/document/d/1YSdJeAVipCdkgDKyQcvhsCgSq7fyzlcXmzh09zOgA9s/edit) |
+| Spreadsheet | n/a                                                                                                                                  |
 
 © Better Government Association 2019
 

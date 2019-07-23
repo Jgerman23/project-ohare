@@ -14,7 +14,7 @@ module.exports = {
       path.resolve(process.cwd(), 'src/data/data.json')
     );
 
-    var shareImageUrl = 'timeline-social-card.jpg';
+    var shareImageUrl = 'images/timeline-social-card.jpg';
     var shareImagePath = path.resolve(
       process.cwd(),
       'src/static/',
