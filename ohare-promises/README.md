@@ -33,7 +33,33 @@ $ git clone https://github.com/bettergov/ohare-promises.git && cd ohare-promises
 $ yarn
 ```
 
-3.  Finally, run the project.
+3. Move `.env.example` to `.env`. Commented and emphasized (`#!`) env variables should either be filled out or readable from elsewhere, e.g. `~/.bash_profile`.
+
+```bash
+$ mv .env.example .env
+```
+
+```bash
+# .env
+
+DOCUMENT_ID="1AqLhwCi7bAYwimq6gFPsXs07gsx5h0yok8KDVd0cSKI"
+
+# Authorize googleapis using their default env variables
+# See gulp/tasks/{archie,sheets}
+#! GCLOUD_PROJECT=
+#! GOOGLE_APPLICATION_CREDENTIALS=
+
+# s3 / AWS variables
+#! AWS_ACCESS_KEY_ID=
+#! AWS_SECRET_ACCESS_KEY=
+S3_PROD_BUCKET='projects.bettergov.org'
+S3_STAGE_BUCKET='stage-projects.bettergov.org'
+S3_REGION='us-east-1'
+CLOUDFRONT_DISTRIBUTION_ID='E3TGYGX4OFUT9M'
+
+```
+
+4.  Finally, run the project.
 
 ```bash
 $ yarn dev
