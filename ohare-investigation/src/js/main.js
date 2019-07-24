@@ -10,9 +10,6 @@ import HeadingTerminal from './heading-terminal';
 
 let pymParents;
 
-// Load custom tracking code lazily, so it's non-blocking
-import('./analytics.js').then(analytics => analytics.init());
-
 document.addEventListener('DOMContentLoaded', function() {
   new HeadingTerminal(document.querySelector('.heading-terminal'));
 });
