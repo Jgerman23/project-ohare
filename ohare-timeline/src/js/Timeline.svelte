@@ -132,11 +132,13 @@
 <style>
   .controls {
     position: sticky;
-    top: calc(100vh - 2.5rem - 2rem);
-    height: 4.5rem;
+    top: calc(100vh - 4.5rem - 2rem);
+    height: calc(4.5rem + 2rem);
     text-align: right;
     z-index: 99;
     margin-left: 1rem;
+    padding-top: 1rem;
+    padding-bottom: 3rem;
   }
 </style>
 
