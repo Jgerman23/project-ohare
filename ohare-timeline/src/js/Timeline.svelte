@@ -1,6 +1,12 @@
-<script context="module">
+<script>
   // https://svelte.dev/docs#svelte_store
   import { slide } from "./stores";
+
+  let currentSlide;
+
+  const unsubscribe = slide.subscribe(value => {
+    currentSlide = value;
+  });
 
   // load polyfill
   import "intersection-observer";
@@ -15,29 +21,29 @@
    *
    **/
   function createObserver() {
-    const allItems = document.querySelectorAll(".tl-event-container");
-
     const textBlocks = document.querySelectorAll(
-      ".tl-event-container .tl-text"
+      ".tl-event-container .tl-text-contents"
     );
 
     const observer = new IntersectionObserver(
       entries => {
         entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            // remove active class from all timelime items
-            allItems.forEach(c => c.classList.remove("is-active"));
+          if (entry.intersectionRatio > 0.2) {
+            // remove active class from current slide
+            currentSlide && currentSlide.classList.remove("is-active");
 
             // add is-active to current timeline item
-            entry.target.parentNode.classList.add("is-active");
+            entry.target
+              .closest(".tl-event-container")
+              .classList.add("is-active");
 
             // set current timeline item as current slide in store
-            slide.set(entry.target.parentNode);
+            slide.set(entry.target.closest(".tl-event-container"));
           }
         });
       },
       {
-        threshold: 0.6
+        threshold: 0.2
       }
     );
 
@@ -54,7 +60,9 @@
             slide.set(entry.target.parentNode);
           } else if (!wasAbove) {
             // if scrolling up, hide everything
-            allItems.forEach(c => c.classList.remove("is-active"));
+            document
+              .querySelectorAll(".tl-event-container")
+              .forEach(c => c.classList.remove("is-active"));
             slide.set(null);
           }
 
@@ -70,35 +78,29 @@
       observer.observe(e);
     });
   }
-</script>
 
-<script>
-  export let content = [];
+  export let events = [];
 
   import { onMount, onDestroy } from "svelte";
 
   import Button from "./components/controls/Button";
   import TimelineEvents from "./components/events";
 
-  let currentSlide, scrollOptionsBlock;
-
-  const unsubscribe = slide.subscribe(value => {
-    currentSlide = value;
-  });
+  let scrollOptionsBlock;
 
   $: prevEl = currentSlide && currentSlide.previousElementSibling;
   $: nextEl = currentSlide && currentSlide.nextElementSibling;
   // $: scrollBlock = currentSlie
-  $: scrollOptionsBlock =
-    currentSlide &&
-    currentSlide.querySelector(".tl-text-contents").getBoundingClientRect()
-      .height <= window.innerHeight
-      ? "center"
-      : "top";
 
-  const scrollOptions = {
+  function calcScrollBlock(el) {
+    return el.getBoundingClientRect().height <= window.innerHeight
+      ? "center"
+      : "start";
+  }
+
+  let scrollOptions = {
     behavior: "smooth",
-    block: scrollOptionsBlock,
+    block: "start",
     inline: "nearest"
   };
 
@@ -107,11 +109,21 @@
   };
 
   const onClickPrev = function() {
-    if (prevEl) prevEl.querySelector(".tl-text").scrollIntoView(scrollOptions);
+    if (prevEl) {
+      scrollOptions.block = calcScrollBlock(
+        prevEl.querySelector(".tl-text-contents")
+      );
+      prevEl.querySelector(".tl-text").scrollIntoView(scrollOptions);
+    }
   };
 
   const onClickNext = function() {
-    if (nextEl) nextEl.querySelector(".tl-text").scrollIntoView(scrollOptions);
+    if (nextEl) {
+      scrollOptions.block = calcScrollBlock(
+        nextEl.querySelector(".tl-text-contents")
+      );
+      nextEl.querySelector(".tl-text").scrollIntoView(scrollOptions);
+    }
   };
 
   $: {
@@ -159,9 +171,5 @@
 </div>
 
 <div class="timeline" id="timeline-inner">
-  {#each content as contentItem}
-    {#if contentItem.type == 'events'}
-      <TimelineEvents events={contentItem.value} />
-    {/if}
-  {/each}
+  <TimelineEvents {events} />
 </div>

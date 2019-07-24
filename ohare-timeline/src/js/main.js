@@ -18,7 +18,7 @@ const app = new Timeline({
   target: document.querySelector('#timeline-app'),
   hydrate: prod ? true : false,
   props: {
-    content: ARCHIE.content
+    events: ARCHIE.events
   }
 });
 
