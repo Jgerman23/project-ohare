@@ -37,7 +37,7 @@
         });
       },
       {
-        threshold: 0.75
+        threshold: 0.6
       }
     );
 
@@ -80,7 +80,7 @@
   import Button from "./components/controls/Button";
   import TimelineEvents from "./components/events";
 
-  let currentSlide;
+  let currentSlide, scrollOptionsBlock;
 
   const unsubscribe = slide.subscribe(value => {
     currentSlide = value;
@@ -88,10 +88,17 @@
 
   $: prevEl = currentSlide && currentSlide.previousElementSibling;
   $: nextEl = currentSlide && currentSlide.nextElementSibling;
+  // $: scrollBlock = currentSlie
+  $: scrollOptionsBlock =
+    currentSlide &&
+    currentSlide.querySelector(".tl-text-contents").getBoundingClientRect()
+      .height <= window.innerHeight
+      ? "center"
+      : "top";
 
   const scrollOptions = {
     behavior: "smooth",
-    block: "center",
+    block: scrollOptionsBlock,
     inline: "nearest"
   };
 
@@ -132,10 +139,11 @@
 <style>
   .controls {
     position: sticky;
-    top: calc(100vh - 2.5rem - 1.5rem);
-    height: 2.5rem;
+    top: calc(100vh - 2.5rem - 2rem);
+    height: 4.5rem;
     text-align: right;
     z-index: 99;
+    margin-left: 1rem;
   }
 </style>
 

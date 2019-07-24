@@ -14,8 +14,8 @@
 
   @include media('<phone') {
     width: 100vw;
-    position: absolute;
-    left: -1rem;
+    position: relative;
+    left: -2.5rem;
 
     .tl-text-contents {
       @include fit-paragraph;
@@ -26,6 +26,12 @@
       left: calc(1rem + 1px) !important;
     }
   }
+}
+
+.controls {
+  background: transparentize($page-background, 0.2);
+  padding-top: 1rem;
+  padding-bottom: 1rem;
 }
 
 section.story {
