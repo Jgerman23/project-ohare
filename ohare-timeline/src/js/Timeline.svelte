@@ -2,12 +2,6 @@
   // https://svelte.dev/docs#svelte_store
   import { slide } from "./stores";
 
-  let currentSlide;
-
-  const unsubscribe = slide.subscribe(value => {
-    currentSlide = value;
-  });
-
   // load polyfill
   import "intersection-observer";
 
@@ -28,17 +22,9 @@
     const observer = new IntersectionObserver(
       entries => {
         entries.forEach(entry => {
+          // set current timeline item as current slide in store
           if (entry.intersectionRatio > 0.2) {
-            // remove active class from current slide
-            currentSlide && currentSlide.classList.remove("is-active");
-
-            // add is-active to current timeline item
-            entry.target
-              .closest(".tl-event-container")
-              .classList.add("is-active");
-
-            // set current timeline item as current slide in store
-            slide.set(entry.target.closest(".tl-event-container"));
+            $slide = entry.target.closest(".tl-event-container");
           }
         });
       },
@@ -57,13 +43,10 @@
           const isAbove = entry.boundingClientRect.y < entry.rootBounds.y;
 
           if (entry.isIntersecting) {
-            slide.set(entry.target.parentNode);
+            $slide = entry.target.closest(".tl-event-container");
           } else if (!wasAbove) {
             // if scrolling up, hide everything
-            document
-              .querySelectorAll(".tl-event-container")
-              .forEach(c => c.classList.remove("is-active"));
-            slide.set(null);
+            $slide = null;
           }
 
           wasAbove = isAbove;
@@ -88,9 +71,8 @@
 
   let scrollOptionsBlock;
 
-  $: prevEl = currentSlide && currentSlide.previousElementSibling;
-  $: nextEl = currentSlide && currentSlide.nextElementSibling;
-  // $: scrollBlock = currentSlie
+  $: prevEl = $slide && $slide.previousElementSibling;
+  $: nextEl = $slide && $slide.nextElementSibling;
 
   function calcScrollBlock(el) {
     return el.getBoundingClientRect().height <= window.innerHeight
@@ -127,25 +109,24 @@
   };
 
   $: {
-    if (currentSlide) {
-      const hash = currentSlide.id;
+    if ($slide) {
+      const hash = $slide.id;
 
       // remove hash from slide to prevent scrolling
-      currentSlide.id = null;
+      $slide.id = null;
 
       // set url hash
       window.history.replaceState(null, null, `#${hash}`);
       // window.location.hash = `#${hash}`;
 
       // add hash back to slide
-      currentSlide.id = hash;
+      $slide.id = hash;
     } else {
       window.history.replaceState(null, null, `#`);
     }
   }
 
   onMount(createObserver);
-  onDestroy(unsubscribe);
 </script>
 
 <style>

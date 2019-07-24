@@ -26,10 +26,10 @@
   .image-container {
     opacity: 0;
     transition: opacity 0.3s ease;
+  }
 
-    :global(.is-active) & {
-      opacity: 1;
-    }
+  :global(.is-active) .image-container {
+    opacity: 1;
   }
 
   .image-container-inner {
@@ -63,10 +63,12 @@
   }
 </style>
 
-<div class="image-container">
-  <div class="image-container-inner">
-    <figure class={styles}>
-      <img class="lazyload" data-src={'images/' + src} {alt} />
-    </figure>
+{#if src}
+  <div class="image-container">
+    <div class="image-container-inner">
+      <figure class={styles}>
+        <img class="lazyload" data-src={'images/' + src} {alt} />
+      </figure>
+    </div>
   </div>
-</div>
+{/if}
