@@ -1,0 +1,4 @@
+{
+  "private": true,
+  "workspaces": ["ohare-investigation", "ohare-timeline", "ohare-promises"]
+}
