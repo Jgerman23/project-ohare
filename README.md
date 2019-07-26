@@ -19,7 +19,7 @@ This repo using the workspaces feature of Yarn. Make sure you have [Yarn install
 1. Clone this project and cd into the directory.
 
 ```bash
-$ git clone https://github.com/bettergov/ohare-project.git && cd ohare-project
+$ git clone https://github.com/bettergov/project-ohare.git && cd project-ohare
 ```
 
 2. Install dependencies.
