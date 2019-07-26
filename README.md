@@ -8,6 +8,8 @@ Monorepo containing project directories for the story "O'Hare's Billions in Brok
 - [ohare-promises](ohare-promises)
 - [ohare-timeline](ohare-timeline)
 
+See also: [Google Drive folder](https://drive.google.com/drive/folders/1OwEltmBjpDjTwXMZPu4iZjPASSZgUcD9?usp=sharing) — must be BGA staff to access
+
 ## Dependencies
 
 This repo using the workspaces feature of Yarn. Make sure you have [Yarn installed](https://yarnpkg.com/en/docs/install) and [read more about workspaces](https://yarnpkg.com/lang/en/docs/workspaces/).
