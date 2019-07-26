@@ -17,23 +17,19 @@
 
 ## Dependencies
 
-Make sure you have the latest version of [node](https://docs.npmjs.com/getting-started/installing-node) installed on your machine as well as the [yarn](https://yarnpkg.com/en/docs/install#mac-stable) package manager.
+Make sure you have the latest version of [node](https://docs.npmjs.com/getting-started/installing-node) installed on your machine as well as the [yarn](https://yarnpkg.com/en/docs/install) package manager.
+
+This repo using the workspaces feature of Yarn. [Read more about workspaces.](https://yarnpkg.com/lang/en/docs/workspaces/)
 
 # Getting started
 
-1.  Clone this project and `cd` into the directory.
-
-```bash
-$ git clone https://github.com/bettergov/ohare-promises.git && cd ohare-promises
-```
-
-2.  Install dependencies.
+1.  Install dependencies, if you didn't already in the initial setup.
 
 ```bash
 $ yarn
 ```
 
-3. Move `.env.example` to `.env`. Commented and emphasized (`#!`) env variables should either be filled out or readable from elsewhere, e.g. `~/.bash_profile`.
+2. Move `.env.example` to `.env`. Commented and emphasized (`#!`) env variables should either be filled out or readable from elsewhere, e.g. `~/.bash_profile`.
 
 ```bash
 $ mv .env.example .env
@@ -59,7 +55,7 @@ CLOUDFRONT_DISTRIBUTION_ID='E3TGYGX4OFUT9M'
 
 ```
 
-4.  Finally, run the project.
+3.  Finally, run the project.
 
 ```bash
 $ yarn dev
