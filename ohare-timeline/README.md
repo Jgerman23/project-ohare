@@ -29,10 +29,10 @@ This repo using the workspaces feature of Yarn. [Read more about workspaces.](ht
 $ yarn
 ```
 
-2. Move `.env.example` to `.env`. Commented and emphasized (`#!`) env variables should either be filled out or readable from elsewhere, e.g. `~/.bash_profile`.
+2. Copy `.env.example` to `.env`. Commented and emphasized (`#!`) env variables should either be filled out or readable from elsewhere, e.g. `~/.bash_profile`.
 
 ```bash
-$ mv .env.example .env
+$ cp .env.example .env
 ```
 
 ```bash
