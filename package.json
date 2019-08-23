@@ -1,4 +1,11 @@
 {
   "private": true,
-  "workspaces": ["ohare-investigation", "ohare-timeline", "ohare-promises"]
+  "workspaces": [
+    "ohare-investigation",
+    "ohare-timeline",
+    "ohare-promises"
+  ],
+  "dependencies": {
+    "delayed-stream": "^1.0.0"
+  }
 }

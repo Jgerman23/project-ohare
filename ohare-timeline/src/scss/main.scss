@@ -26,6 +26,15 @@
       left: calc(1rem + 1px) !important;
     }
   }
+
+  @media print {
+    left: 0;
+
+    .tl-text-contents {
+      padding-left: 0;
+      padding-right: 0;
+    }
+  }
 }
 
 .controls {
@@ -127,14 +136,41 @@ nav.global .share {
     padding: 0;
   }
 
+  .tl-event-container {
+    flex-direction: column-reverse !important;
+    // margin-bottom: 3rem;
+
+    &::after {
+      content: '';
+      display: block;
+      width: 3rem;
+      height: 0.5rem;
+      background: $page-background;
+      margin-bottom: 0.5rem;
+    }
+  }
+
   .image-container {
-    display: none !important;
+    opacity: 1 !important;
+    position: static !important;
+    break-inside: avoid !important;
+    page-break-inside: avoid !important;
+
+    figure {
+      background: $page-background;
+      float: none !important;
+      height: unset !important;
+      max-height: unset !important;
+      width: 50% !important;
+      margin-left: auto !important;
+      margin-right: auto !important;
+    }
   }
 
   .tl-event-container {
     min-height: unset !important;
     padding-top: 1rem !important;
-    padding-bottom: 1rem !important;
+    padding-bottom: 0 !important;
   }
 
   .tl-text {
@@ -145,12 +181,12 @@ nav.global .share {
 
   .tl-event-container {
     position: relative !important;
-    break-inside: avoid;
-    page-break-inside: avoid;
+    // break-inside: avoid;
+    // page-break-inside: avoid;
   }
 
   .tl-cutline {
-    display: none;
+    // display: none;
   }
 
   .timeline-events {
@@ -159,6 +195,11 @@ nav.global .share {
 
   .tl-text {
     padding: 0 !important;
-    break-inside: avoid;
+    // break-inside: avoid;
+  }
+
+  .story-after.story-after,
+  .table-of-contents--bottom.table-of-contents--bottom {
+    display: none;
   }
 }
